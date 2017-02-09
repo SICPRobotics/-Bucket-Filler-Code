@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 public class JoystickFunctions 
 {
 	
-	static Joystick discoStick = new Joystick(0); //joystick object
+	static Joystick discoStick = new Joystick(1); //joystick object
 	static double moveValue;
 	static double rotateValue;	
 	

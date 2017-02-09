@@ -11,12 +11,11 @@ public class OI
 {
 	Joystick xboxCtr = new Joystick(1);
 	Button buttonX = new JoystickButton(xboxCtr, 3);
-	Joystick joystick = new Joystick(0);
-	Button button11 = new JoystickButton(joystick, 11);
+	Button buttonY = new JoystickButton(xboxCtr, 4);
 
 	public OI()
 	{
 		buttonX.whenPressed(new Shoot());
-		button11.whenPressed(new Climb());
+		buttonY.whenPressed(new Climb());
 	}
 }

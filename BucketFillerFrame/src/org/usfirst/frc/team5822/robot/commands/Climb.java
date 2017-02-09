@@ -7,7 +7,8 @@ public class Climb extends Command {
 
 	Timer climbTimer;
 	
-	public Climb() {	
+	public Climb() 
+	{	
 	}
 
 	// Called just before this Command runs the first time
@@ -28,7 +29,8 @@ public class Climb extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
-	protected boolean isFinished() {
+	protected boolean isFinished() 
+	{
 		if (climbTimer.get() > 2.0)
 			return true;
 		return false;
@@ -36,13 +38,15 @@ public class Climb extends Command {
 
 	// Called once after isFinished returns true
 	@Override
-	protected void end() {
+	protected void end() 
+	{
 		System.out.println("done climbing");
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
-	protected void interrupted() {
+	protected void interrupted() 
+	{
 	}
 }

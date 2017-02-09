@@ -10,7 +10,8 @@ public class Shoot extends Command {
 
 	Timer shootTimer;
 	
-	public Shoot() {	
+	public Shoot() 
+	{	
 	}
 
 	// Called just before this Command runs the first time
@@ -31,7 +32,8 @@ public class Shoot extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
-	protected boolean isFinished() {
+	protected boolean isFinished() 
+	{
 		if (shootTimer.get() > 2.0)
 			return true;
 		return false;
@@ -39,13 +41,15 @@ public class Shoot extends Command {
 
 	// Called once after isFinished returns true
 	@Override
-	protected void end() {
+	protected void end() 
+	{
 		System.out.println("done shooting");
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
-	protected void interrupted() {
+	protected void interrupted() 
+	{
 	}
 }
