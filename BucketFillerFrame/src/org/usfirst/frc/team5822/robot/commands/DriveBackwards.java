@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5822.robot.commands;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
@@ -24,8 +23,8 @@ public class DriveBackwards extends Command {
 	@Override
 	protected void initialize() 
 	{
-		Robot.leftEncoder.reset();
-		Robot.rightEncoder.reset();
+		//Robot.leftEncoder.reset();
+		//Robot.rightEncoder.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

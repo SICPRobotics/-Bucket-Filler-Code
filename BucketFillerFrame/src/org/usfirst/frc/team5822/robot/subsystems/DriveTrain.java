@@ -2,8 +2,6 @@ package org.usfirst.frc.team5822.robot.subsystems;
 
 import org.usfirst.frc.team5822.robot.SICPRobotDrive;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**

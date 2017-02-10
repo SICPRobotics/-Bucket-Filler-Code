@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5822.robot.commands;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;

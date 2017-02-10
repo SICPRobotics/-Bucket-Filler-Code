@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5822.robot.Robot;
-
 /**
  * The elevator subsystem uses PID to go to a given height. Unfortunately, in
  * it's current state PID values for simulation are different than in the real
