@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5822.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 
 public class JoystickFunctions 
 {
@@ -10,7 +9,7 @@ public class JoystickFunctions
 	static double moveValue;
 	static double rotateValue;	
 	
-	public static void joystickDrive(RobotDrive wheelz)
+	public static void joystickDrive(SICPRobotDrive wheelz)
 	{
 		double scale = discoStick.getRawAxis(3)*-1;
 		scale = ((scale+1)/5)+0.6; 
@@ -34,19 +33,4 @@ public class JoystickFunctions
 		wheelz.arcadeDrive(moveValue, rotateValue, true);
 		
 	}
-	
-	public static void visionLineUp(RobotDrive wheelz)
-	{
-		if (discoStick.getRawButton(11))
-		{
-			//line up with gear peg
-			System.out.println("lining up with gear peg");
-		}
-		if (discoStick.getRawButton(12))
-		{
-			//line up with boiler
-			System.out.println("lining up with boiler");
-		}
-	}
-	
 }

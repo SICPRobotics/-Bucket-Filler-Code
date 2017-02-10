@@ -28,14 +28,11 @@ public class OI
 	{
 		buttonX.whenPressed(new Shoot());
 		buttonY.whenPressed(new Climb());
-		buttonX.whileHeld(new Shoot());
-		buttonY.whenPressed(new Climb());
+
 		button7.whenPressed(new GearLineUp());
 		button8.whenPressed(new GearVisionEnable());
 		button9.whenPressed(new HighGoalAngle());
 		button10.whenPressed(new HighGoalDistance());
-		button11.whenPressed(new HighGoalVisionEnable());
-		
-		
+		button11.whenPressed(new HighGoalVisionEnable());		
 	}
 }

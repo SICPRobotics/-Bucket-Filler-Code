@@ -1,18 +1,24 @@
 package org.usfirst.frc.team5822.robot.commands;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
-import org.usfirst.frc.team5822.robot.subsystems.Shooter;
+import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 
 /**
  *
  */
-public class Shoot extends Command {
-	public Shoot() 
+public class TurnRight extends Command {
+	
+	int turnAngle;
+
+	
+	public TurnRight(int desiredAngle) 
 	{
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.shooter);
+		requires(Robot.driveTrain);
+		turnAngle = desiredAngle;
 	}
 
 	// Called just before this Command runs the first time
@@ -26,14 +32,22 @@ public class Shoot extends Command {
 	@Override
 	protected void execute() 
 	{
-		Shooter.shoot();
+		DriveTrain.turnRight();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() 
 	{
-		return false;
+
+		if (turnAngle < Robot.gyro.getAngle())
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	// Called once after isFinished returns true

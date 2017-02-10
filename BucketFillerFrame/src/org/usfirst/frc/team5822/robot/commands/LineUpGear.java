@@ -3,30 +3,29 @@ package org.usfirst.frc.team5822.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
-import org.usfirst.frc.team5822.robot.subsystems.Shooter;
 
 /**
  *
  */
-public class Shoot extends Command {
-	public Shoot() 
+public class LineUpGear extends Command {
+	public LineUpGear() 
 	{
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.shooter);
+		requires(Robot.driveTrain);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() 
 	{
-
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() 
 	{
-		Shooter.shoot();
+		System.out.println("lining up with gear");
+		//write code that lines up here
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
