@@ -5,6 +5,7 @@ import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,8 +17,9 @@ public class Robot extends IterativeRobot
 	SICPRobotDrive wheelz;
 	AnalogSonar ultra;
 	public static ADXRS450_Gyro gyro;
-	public static Encoder leftEncoder;
-	public static Encoder rightEncoder;
+	public static Encoder leftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //I don't know if this is the right way to construct this but it's what Martin had
+	public static Encoder rightEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //Check this later because I don't have time right now
+	public static AnalogInput sonar = new AnalogInput(0); //fill in based on which port it is plugged in
 	
 	private final static int SONAR_PORT = 1;
 
