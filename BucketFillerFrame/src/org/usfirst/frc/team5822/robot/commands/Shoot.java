@@ -19,7 +19,7 @@ public class Shoot extends Command {
 	@Override
 	protected void initialize() 
 	{
-
+		System.out.println("about to shoot");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -27,6 +27,7 @@ public class Shoot extends Command {
 	protected void execute() 
 	{
 		Shooter.shoot();
+		System.out.println("Shooting");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

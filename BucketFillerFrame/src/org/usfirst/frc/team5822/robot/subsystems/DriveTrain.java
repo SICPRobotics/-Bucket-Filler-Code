@@ -17,9 +17,7 @@ public class DriveTrain extends Subsystem
 	{
 		drive = new SICPRobotDrive(0,1,2,3);
 	}
-	
-	
-	
+		
 	public static void driveForward()
 	{
 		drive.drive(0.5, 0.0);

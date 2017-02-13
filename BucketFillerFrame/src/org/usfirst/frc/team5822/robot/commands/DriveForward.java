@@ -14,7 +14,6 @@ public class DriveForward extends Command
 {
 	int distance;
 	
-	
 	public DriveForward(int encoderDistance) 
 	{
 		// Use requires() here to declare subsystem dependencies
@@ -29,6 +28,7 @@ public class DriveForward extends Command
 	protected void initialize() 
 	{
 		Sensors.resetEncoders();
+		System.out.println("Drive Forward init");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -36,28 +36,26 @@ public class DriveForward extends Command
 	protected void execute() 
 	{
 		DriveTrain.driveForward();
+		System.out.println("Driving forward");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() 
 	{
-
-		if (Sensors.leftEncoderDistance() < distance && Sensors.rightEncoderDistance() < distance)
+		if (Sensors.sonarDistance() < distance)
 		{
+			System.out.println("Too far");
 			return false;
 		}
-		else
-		{
-			return true;
-		}
+		return true;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() 
 	{
-		
+		System.out.println("Correct distance. Ending command.");
 	}
 
 	// Called when another command which requires one or more of the same

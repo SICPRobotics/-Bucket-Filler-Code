@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5822.robot;
 
 import org.usfirst.frc.team5822.robot.commands.Climb;
-import org.usfirst.frc.team5822.robot.commands.GearLineUp;
+import org.usfirst.frc.team5822.robot.commands.LineUpGear;
 import org.usfirst.frc.team5822.robot.commands.GearVisionEnable;
 import org.usfirst.frc.team5822.robot.commands.HighGoalAngle;
 import org.usfirst.frc.team5822.robot.commands.HighGoalDistance;
@@ -34,7 +34,7 @@ public class OI
 		buttonY.whenPressed(new Climb());
 		buttonA.whileHeld(new Intake());
 		buttonB.whileHeld(new Outtake());
-		button7.whenPressed(new GearLineUp());
+		button7.whenPressed(new LineUpGear());
 		button8.whenPressed(new GearVisionEnable());
 		button9.whenPressed(new HighGoalAngle());
 		button10.whenPressed(new HighGoalDistance());

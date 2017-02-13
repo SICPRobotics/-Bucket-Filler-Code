@@ -15,17 +15,13 @@ public class Robot extends IterativeRobot
 	public static Shooter shooter;
 	public static Sensors sensors;
 	SICPRobotDrive wheelz;
-	AnalogSonar ultra;
 	ADXRS450_Gyro gyro;
-	
-	private final static int SONAR_PORT = 1;
 
 	@Override
 	public void robotInit() 
 	{
 		wheelz = new SICPRobotDrive(0, 1, 2, 3);
-		ultra = new AnalogSonar(SONAR_PORT);
-		SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
+		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
 		gyro = new ADXRS450_Gyro();
 		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
 		
@@ -64,6 +60,7 @@ public class Robot extends IterativeRobot
 		@Override
 		public void teleopPeriodic() 
 		{
+			//see OI for other button functions
 			JoystickFunctions.joystickDrive(wheelz);
 		}
 

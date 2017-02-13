@@ -2,6 +2,7 @@ package org.usfirst.frc.team5822.robot.commands;
 
 import org.usfirst.frc.team5822.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -9,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class LineUpBoiler extends Command {
 
+	Timer timer = new Timer();
+	
     public LineUpBoiler() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,11 +29,14 @@ public class LineUpBoiler extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+		if (timer.get() < 5)
+			return false;
+		return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("lined up with boiler");
     }
 
     // Called when another command which requires one or more of the same
