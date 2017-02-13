@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5822.robot.Robot;
 
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 
 /**
  *
@@ -18,6 +19,7 @@ public class DriveForward extends Command
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		requires(Robot.sensors);
 		distance = encoderDistance;
 
 	}
@@ -26,8 +28,7 @@ public class DriveForward extends Command
 	@Override
 	protected void initialize() 
 	{
-		Robot.leftEncoder.reset();
-		Robot.rightEncoder.reset();
+		Sensors.resetEncoders();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -42,7 +43,7 @@ public class DriveForward extends Command
 	protected boolean isFinished() 
 	{
 
-		if (Robot.leftEncoder.getDistance() < distance && Robot.rightEncoder.getDistance() < distance)
+		if (Sensors.leftEncoderDistance() < distance && Sensors.rightEncoderDistance() < distance)
 		{
 			return false;
 		}

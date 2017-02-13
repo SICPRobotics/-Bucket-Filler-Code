@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 
 /**
  *
@@ -15,6 +16,7 @@ public class DriveBackwards extends Command {
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		requires(Robot.sensors);
 		encoderDistance2 = encoderDistance;
 
 	}
@@ -38,7 +40,7 @@ public class DriveBackwards extends Command {
 	@Override
 	protected boolean isFinished() 
 	{
-		if (Robot.leftEncoder.getDistance() > encoderDistance2 && Robot.rightEncoder.getDistance() > encoderDistance2)
+		if (Sensors.leftEncoderDistance() > encoderDistance2 && Sensors.rightEncoderDistance() > encoderDistance2)
 			return true;
 		return false;
 	}

@@ -7,8 +7,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DriveTrain extends Subsystem {
-	
+public class DriveTrain extends Subsystem 
+{
+
 	
 	static SICPRobotDrive drive;
 	
@@ -16,6 +17,8 @@ public class DriveTrain extends Subsystem {
 	{
 		drive = new SICPRobotDrive(0,1,2,3);
 	}
+	
+	
 	
 	public static void driveForward()
 	{

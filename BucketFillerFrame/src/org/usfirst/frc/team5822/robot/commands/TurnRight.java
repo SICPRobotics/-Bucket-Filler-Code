@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 
 /**
  *
@@ -17,6 +18,7 @@ public class TurnRight extends Command {
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		requires(Robot.sensors);
 		turnAngle = desiredAngle;
 	}
 
@@ -39,7 +41,7 @@ public class TurnRight extends Command {
 	protected boolean isFinished() 
 	{
 
-		if (turnAngle < Robot.gyro.getAngle())
+		if (turnAngle < Sensors.gyroAngle())
 		{
 			return false;
 		}

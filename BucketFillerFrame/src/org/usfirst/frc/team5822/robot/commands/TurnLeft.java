@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 
 /**
  *
@@ -38,7 +39,7 @@ public class TurnLeft extends Command {
 	protected boolean isFinished() 
 	{
 
-		if (turnAngle < Robot.gyro.getAngle())
+		if (turnAngle < Sensors.gyroAngle())
 		{
 			return false;
 		}
