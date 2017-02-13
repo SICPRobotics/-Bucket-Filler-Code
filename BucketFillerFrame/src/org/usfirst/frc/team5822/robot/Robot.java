@@ -1,12 +1,15 @@
 
 package org.usfirst.frc.team5822.robot;
 
+import org.usfirst.frc.team5822.robot.commands.AutoLinedUpCenterBlue;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 import org.usfirst.frc.team5822.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot 
@@ -16,6 +19,7 @@ public class Robot extends IterativeRobot
 	public static Sensors sensors;
 	SICPRobotDrive wheelz;
 	ADXRS450_Gyro gyro;
+	Command autonomousCommand;
 
 	@Override
 	public void robotInit() 
@@ -42,13 +46,14 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-
+		autonomousCommand = new AutoLinedUpCenterBlue();
+		autonomousCommand.start();
 	}
 
 		@Override
 		public void autonomousPeriodic() 
 		{
-
+			Scheduler.getInstance().run();
 		}
 
 	@Override
