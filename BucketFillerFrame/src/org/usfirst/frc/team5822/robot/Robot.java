@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot 
 {
 	Command autonomousCommand;
-	public static DriveTrain driveTrain;
-	public static Shooter shooter;
-	public static Sensors sensors;
+	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final Shooter shooter = new Shooter();
+	public static final Sensors sensors = new Sensors();
 //	SICPRobotDrive wheelz;
 //	ADXRS450_Gyro gyro;
 	
@@ -29,10 +29,7 @@ public class Robot extends IterativeRobot
 //		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
 //		gyro = new ADXRS450_Gyro();
 //		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
-		
-		driveTrain = new DriveTrain();
-		shooter = new Shooter();
-		sensors = new Sensors();
+
 		autonomousCommand = new AutoLinedUpCenterBlue();
 		
 		
