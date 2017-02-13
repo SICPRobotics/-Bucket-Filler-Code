@@ -14,20 +14,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot 
 {
+	Command autonomousCommand;
 	public static DriveTrain driveTrain;
 	public static Shooter shooter;
 	public static Sensors sensors;
-	SICPRobotDrive wheelz;
-	ADXRS450_Gyro gyro;
-	Command autonomousCommand;
+//	SICPRobotDrive wheelz;
+//	ADXRS450_Gyro gyro;
+	
 
 	@Override
 	public void robotInit() 
 	{
-		wheelz = new SICPRobotDrive(0, 1, 2, 3);
-		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
-		gyro = new ADXRS450_Gyro();
-		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
+//		wheelz = new SICPRobotDrive(0, 1, 2, 3);
+//		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
+//		gyro = new ADXRS450_Gyro();
+//		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
+		
+		driveTrain = new DriveTrain();
+		shooter = new Shooter();
+		sensors = new Sensors();
+		autonomousCommand = new AutoLinedUpCenterBlue();
+		
 		
 	}
 
@@ -46,7 +53,6 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-		autonomousCommand = new AutoLinedUpCenterBlue();
 		autonomousCommand.start();
 	}
 
@@ -66,7 +72,7 @@ public class Robot extends IterativeRobot
 		public void teleopPeriodic() 
 		{
 			//see OI for other button functions
-			JoystickFunctions.joystickDrive(wheelz);
+//			JoystickFunctions.joystickDrive(wheelz);
 		}
 
 	@Override
