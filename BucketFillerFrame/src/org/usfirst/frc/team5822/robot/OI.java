@@ -30,14 +30,15 @@ public class OI
 
 	public OI()
 	{
-		buttonX.whenPressed(new Shoot());
-		buttonY.whenPressed(new Climb());
-		buttonA.whileHeld(new Intake());
-		buttonB.whileHeld(new Outtake());
+		buttonX.whenPressed(new Shoot()); //need to write code for shoot
+		buttonY.whenPressed(new Climb()); //need to write code for climb
+		buttonA.whileHeld(new Intake()); //yeah none of these really do anything rn sooooooo
+		buttonB.whileHeld(new Outtake()); //write some code for it
 		button7.whenPressed(new LineUpGear());
+		
 		button8.whenPressed(new GearVisionEnable());
 		button9.whenPressed(new HighGoalAngle());
-		button10.whenPressed(new HighGoalDistance());
+		button10.whenPressed(new HighGoalDistance()); //i think we can take this one out
 		button11.whenPressed(new HighGoalVisionEnable());		
 	}
 }

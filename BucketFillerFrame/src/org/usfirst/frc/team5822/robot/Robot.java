@@ -18,17 +18,17 @@ public class Robot extends IterativeRobot
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Shooter shooter = new Shooter();
 	public static final Sensors sensors = new Sensors();
-//	SICPRobotDrive wheelz;
-//	ADXRS450_Gyro gyro;
+	SICPRobotDrive wheelz;
+	ADXRS450_Gyro gyro;
 	
 
 	@Override
 	public void robotInit() 
 	{
-//		wheelz = new SICPRobotDrive(0, 1, 2, 3);
-//		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
-//		gyro = new ADXRS450_Gyro();
-//		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
+		wheelz = new SICPRobotDrive(0, 1, 2, 3);
+		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
+		gyro = new ADXRS450_Gyro();
+		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
 
 		autonomousCommand = new AutoLinedUpCenterBlue();
 		
