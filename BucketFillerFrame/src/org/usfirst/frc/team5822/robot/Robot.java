@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot
 		@Override
 		public void disabledInit() 
 		{
-			//hi
+			
 		}
 
 		@Override
@@ -69,7 +69,8 @@ public class Robot extends IterativeRobot
 		public void teleopPeriodic() 
 		{
 			//see OI for other button functions
-//			JoystickFunctions.joystickDrive(wheelz);
+			Scheduler.getInstance().run();
+			JoystickFunctions.joystickDrive(wheelz);
 		}
 
 	@Override
