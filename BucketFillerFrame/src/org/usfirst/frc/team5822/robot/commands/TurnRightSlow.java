@@ -27,7 +27,6 @@ public class TurnRightSlow extends Command {
 	protected void initialize() 
 	{
 		System.out.println("turning right slow ANGELA IS THE COOLEST");
-		Sensors.resetGyro();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -6,10 +6,10 @@ public class AutoLinedUpCenterBlue extends CommandGroup
 {
 	public AutoLinedUpCenterBlue()
 	{
-		addSequential(new DriveForward(20)); //currently based on sonar distance, change this to encoder distance later
+		addSequential(new DriveForward(30)); //currently based on sonar distance, change this to encoder distance later
 		addSequential(new LineUpGear());
 		addSequential(new WaitForPilot());
-		addSequential(new DriveBackwards(20));
+		addSequential(new DriveBackwards(30));
 		addSequential(new TurnLeftFast(-90));
 		addSequential(new TurnRightSlow(-90));
 		addSequential(new DriveForward(30));
