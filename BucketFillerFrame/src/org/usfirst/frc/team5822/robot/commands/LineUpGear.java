@@ -23,6 +23,7 @@ public class LineUpGear extends Command {
 	protected void initialize() 
 	{
 		System.out.println("Line Up Gear init");
+		timer.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -37,8 +38,12 @@ public class LineUpGear extends Command {
 	@Override
 	protected boolean isFinished() 
 	{
-		if (timer.get() < 5)
+		if (timer.get() < 3)
+		{
+			System.out.println("still not done");
+			System.out.println(timer.get());
 			return false;
+		}
 		return true;
 	}
 

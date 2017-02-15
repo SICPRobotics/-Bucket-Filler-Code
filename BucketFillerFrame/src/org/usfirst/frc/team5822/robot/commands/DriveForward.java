@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5822.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
@@ -13,6 +14,7 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 public class DriveForward extends Command 
 {
 	int distance;
+	Timer timer = new Timer();
 	
 	public DriveForward(int encoderDistance) 
 	{
@@ -27,8 +29,9 @@ public class DriveForward extends Command
 	@Override
 	protected void initialize() 
 	{
-		Sensors.resetEncoders();
+		//Sensors.resetEncoders();
 		System.out.println("Drive Forward init");
+		timer.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -43,9 +46,9 @@ public class DriveForward extends Command
 	@Override
 	protected boolean isFinished() 
 	{
-		if (Sensors.sonarDistance() < distance)
+		if (Sensors.sonarDistance() > distance)
 		{
-			System.out.println("Too far");
+			System.out.println(Sensors.sonarDistance());
 			return false;
 		}
 		return true;

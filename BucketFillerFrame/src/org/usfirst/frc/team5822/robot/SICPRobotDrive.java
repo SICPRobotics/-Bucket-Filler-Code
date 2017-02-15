@@ -3,6 +3,7 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.MotorSafety;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.VictorSP;
 
 public class SICPRobotDrive extends RobotDrive implements MotorSafety
 {
@@ -22,7 +23,7 @@ public class SICPRobotDrive extends RobotDrive implements MotorSafety
 	
   public SICPRobotDrive(final int leftMotorChannel, final int rightMotorChannel) 
   {
-	  super(new CANTalon (leftMotorChannel), new CANTalon (rightMotorChannel));
+	  super(new VictorSP (leftMotorChannel), new VictorSP (rightMotorChannel));
   }
 
   /**
@@ -42,7 +43,7 @@ public class SICPRobotDrive extends RobotDrive implements MotorSafety
   public SICPRobotDrive(final int frontLeftMotor, final int rearLeftMotor, final int frontRightMotor,
       final int rearRightMotor) {
 
-      super(new CANTalon (frontLeftMotor), new CANTalon (rearLeftMotor), new CANTalon (frontRightMotor), new CANTalon (rearRightMotor)); 
+      super(new VictorSP (frontLeftMotor), new VictorSP (rearLeftMotor), new VictorSP (frontRightMotor), new VictorSP (rearRightMotor)); 
    
   }
 

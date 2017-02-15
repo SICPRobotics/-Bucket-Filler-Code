@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5822.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5822.robot.Robot;
@@ -12,7 +13,7 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 public class DriveBackwards extends Command {
 	
 int distance;
-	
+	Timer timer = new Timer();
 	public DriveBackwards(int encoderDistance) 
 	{
 		// Use requires() here to declare subsystem dependencies
@@ -28,6 +29,7 @@ int distance;
 	{
 		Sensors.resetEncoders();
 		System.out.println("Drive Backward init");
+		timer.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -42,9 +44,9 @@ int distance;
 	@Override
 	protected boolean isFinished() 
 	{
-		if (Sensors.sonarDistance() > distance)
+		if (Sensors.sonarDistance() < distance)
 		{
-			System.out.println("Too far");
+			System.out.println(Sensors.sonarDistance());
 			return false;
 		}
 		return true;

@@ -17,6 +17,7 @@ public class TurnLeft extends Command {
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		requires(Robot.sensors);
 		turnAngle = desiredAngle;
 	}
 
@@ -25,6 +26,7 @@ public class TurnLeft extends Command {
 	protected void initialize() 
 	{
 		System.out.println("turning left");
+		Sensors.resetGyro();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -32,6 +34,7 @@ public class TurnLeft extends Command {
 	protected void execute() 
 	{
 		DriveTrain.turnLeft();
+		System.out.println(Sensors.gyroAngle());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -41,6 +44,7 @@ public class TurnLeft extends Command {
 
 		if (turnAngle < Sensors.gyroAngle())
 		{
+			System.out.println("not finished");
 			return false;
 		}
 		else
