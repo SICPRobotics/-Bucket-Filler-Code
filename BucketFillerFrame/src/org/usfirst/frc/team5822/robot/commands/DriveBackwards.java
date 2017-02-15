@@ -46,6 +46,7 @@ int distance;
 	{
 		if (Sensors.sonarDistance() < distance)
 		{
+			System.out.println("Drive Backward isFinished()");
 			System.out.println(Sensors.sonarDistance());
 			return false;
 		}

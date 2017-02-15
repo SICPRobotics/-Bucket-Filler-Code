@@ -11,9 +11,9 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
  */
 public class TurnLeft extends Command {
 	
-	int turnAngle;
+	double turnAngle;
 	
-	public TurnLeft(int desiredAngle) 
+	public TurnLeft(double desiredAngle) 
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
@@ -45,6 +45,8 @@ public class TurnLeft extends Command {
 		if (turnAngle < Sensors.gyroAngle())
 		{
 			System.out.println("not finished");
+			System.out.println(Sensors.gyroAngle());
+			System.out.println(turnAngle);
 			return false;
 		}
 		else

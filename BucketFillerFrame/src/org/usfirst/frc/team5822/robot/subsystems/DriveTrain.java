@@ -22,19 +22,19 @@ public class DriveTrain extends Subsystem
 		
 	public static void driveForward()
 	{
-		drive.drive(0.1, 0.0);
+		drive.drive(0.15, 0.0);
 		System.out.println("driving forward method");
 	}
 	
 	public static void driveBackward()
 	{
-		drive.drive(-0.1, 0.0);
+		drive.drive(-0.15, 0.0);
 	}
 	
 	public static void turnLeft()
 	{
 		//turn left
-		drive.drive(0.2, -1);
+		drive.drive(0.15, -1);
 	}
 	
 	public static void turnRight()

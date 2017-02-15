@@ -20,7 +20,7 @@ public class Robot extends IterativeRobot
 	public static final Shooter shooter = new Shooter();
 	public static final Sensors sensors = new Sensors();
 	//RobotDrive wheelz;
-	ADXRS450_Gyro gyro;
+//	ADXRS450_Gyro gyro;
 	
 
 	@Override
@@ -28,17 +28,17 @@ public class Robot extends IterativeRobot
 	{
 		//wheelz = new RobotDrive(0, 1, 2, 3);
 		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
-		gyro = new ADXRS450_Gyro();
-		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
+//		gyro = new ADXRS450_Gyro();
+//		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
 
 		//autonomousCommand = new AutoLinedUpCenterBlue();
-				
+				System.out.println("Robot Init");
 	}
 
 		@Override
 		public void disabledInit() 
 		{
-			
+
 		}
 
 		@Override
@@ -52,6 +52,7 @@ public class Robot extends IterativeRobot
 	{
 		autonomousCommand = new AutoLinedUpCenterBlue();
 		autonomousCommand.start();
+		System.out.println("Hello Jacob");
 	}
 
 		@Override
@@ -63,7 +64,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void teleopInit() 
 	{
-
+		Scheduler.getInstance().removeAll();
 	}
 
 		@Override
@@ -72,9 +73,9 @@ public class Robot extends IterativeRobot
 			//see OI for other button functions
 			Scheduler.getInstance().run();
 			//JoystickFunctions.joystickDrive(wheelz);
-			gyro.reset();
+			//gyro.reset();
 			System.out.println("gyro reset");
-			System.out.println(gyro.getAngle());
+			//System.out.println(gyro.getAngle());
 		}
 
 	@Override

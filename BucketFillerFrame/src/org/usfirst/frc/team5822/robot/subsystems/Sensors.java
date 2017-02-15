@@ -28,6 +28,7 @@ public class Sensors extends Subsystem
 		double voltage = ultra.getAverageVoltage(); // reads the range on the ultrasonic sensor
 		double sensitivity = 10;
 		double range = voltage * sensitivity * 4.1898; //4.1898 from excel equation
+		System.out.println(range);
 		return range;
 	}
 	
@@ -55,9 +56,10 @@ public class Sensors extends Subsystem
 	
 	public static double gyroAngle()
 	{
-		System.out.println("We're here rn");
+		System.out.println("We're here in gyroAngle()");
 		double x = gyro.getAngle();
-		System.out.println("We made it to here");
+		System.out.println("We made it past getting the angle");
+		System.out.println(x);
 		return gyro.getAngle();
 	}
 	
