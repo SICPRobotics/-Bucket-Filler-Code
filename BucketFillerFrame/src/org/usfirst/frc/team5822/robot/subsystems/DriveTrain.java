@@ -31,16 +31,28 @@ public class DriveTrain extends Subsystem
 		drive.drive(-0.15, 0.0);
 	}
 	
-	public static void turnLeft()
+	public static void turnLeftSlow()
 	{
-		//turn left
-		drive.drive(0.15, -1);
+		//turn left real slow boi
+		drive.drive(0.1, -1);
 	}
 	
-	public static void turnRight()
+	public static void turnLeftFast()
 	{
-		//turn right
-		drive.drive(0.2, 1);
+		//turn left real fast boi
+		drive.drive(0.3, -1);
+	}
+	
+	public static void turnRightSlow()
+	{
+		//turn right super duper slowly maaaaaan
+		drive.drive(0.1, 1);
+	}
+	
+	public static void turnRightFast()
+	{
+		//turn right super duper fast boiiiii
+		drive.drive(0.3, 1);
 	}
 	
 	public void initDefaultCommand() {

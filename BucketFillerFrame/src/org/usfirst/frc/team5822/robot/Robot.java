@@ -2,11 +2,13 @@
 package org.usfirst.frc.team5822.robot;
 
 import org.usfirst.frc.team5822.robot.commands.AutoLinedUpCenterBlue;
+import org.usfirst.frc.team5822.robot.commands.AutoLinedUpCenterRed;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 import org.usfirst.frc.team5822.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,6 +21,7 @@ public class Robot extends IterativeRobot
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Shooter shooter = new Shooter();
 	public static final Sensors sensors = new Sensors();
+	//public static AnalogInput ultra;
 	//RobotDrive wheelz;
 //	ADXRS450_Gyro gyro;
 	
@@ -33,6 +36,7 @@ public class Robot extends IterativeRobot
 
 		//autonomousCommand = new AutoLinedUpCenterBlue();
 				System.out.println("Robot Init");
+				//ultra = new AnalogInput(1);
 	}
 
 		@Override
@@ -74,8 +78,12 @@ public class Robot extends IterativeRobot
 			Scheduler.getInstance().run();
 			//JoystickFunctions.joystickDrive(wheelz);
 			//gyro.reset();
-			System.out.println("gyro reset");
+			//System.out.println("gyro reset");
 			//System.out.println(gyro.getAngle());
+			//double voltage = ultra.getAverageVoltage(); // reads the range on the ultrasonic sensor
+			//double sensitivity = 10;
+			//double range = voltage * sensitivity * 4.1898; //4.1898 from excel equation
+			//System.out.println(range);
 		}
 
 	@Override

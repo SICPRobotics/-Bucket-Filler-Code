@@ -6,13 +6,13 @@ public class AutoLinedUpCenterRed extends CommandGroup
 {
 	public AutoLinedUpCenterRed()
 	{
-		addSequential(new DriveForward(1));
+		addSequential(new DriveForward(20));
 		addSequential(new LineUpGear());
 		addSequential(new WaitForPilot());
-		addSequential(new DriveBackwards(1));
-		addSequential(new TurnRight(1));
-		addSequential(new DriveForward(1));
-		addSequential(new TurnRight(1));
+		addSequential(new DriveBackwards(20));
+		addSequential(new TurnRightFast(90));
+		addSequential(new TurnLeftSlow(90));
+		addSequential(new DriveForward(30));
 		addSequential(new LineUpBoiler());
 		addSequential(new Shoot());
 	}
