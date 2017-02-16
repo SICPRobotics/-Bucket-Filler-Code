@@ -23,7 +23,6 @@ public class DriveTrain extends Subsystem
 	public static void driveForward()
 	{
 		drive.drive(0.15, 0.0);
-		System.out.println("driving forward method");
 	}
 	
 	public static void driveBackward()
@@ -34,7 +33,8 @@ public class DriveTrain extends Subsystem
 	public static void turnLeftSlow()
 	{
 		//turn left real slow boi
-		drive.drive(0.1, -1);
+		drive.setLeftRightMotorOutputs(-.2, .2);
+	
 	}
 	
 	public static void turnLeftFast()
@@ -46,14 +46,20 @@ public class DriveTrain extends Subsystem
 	public static void turnRightSlow()
 	{
 		//turn right super duper slowly maaaaaan
-		drive.drive(0.1, 1);
+		drive.setLeftRightMotorOutputs(0.15, -.15);
 	}
 	
 	public static void turnRightFast()
 	{
 		//turn right super duper fast boiiiii
 		drive.drive(0.3, 1);
+		
 	}
+	
+	/*public static double returnSpeed()
+	{
+		drive.
+	}*/
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

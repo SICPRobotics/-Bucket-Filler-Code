@@ -10,8 +10,8 @@ public class AutoLinedUpCenterBlue extends CommandGroup
 		addSequential(new LineUpGear());
 		addSequential(new WaitForPilot());
 		addSequential(new DriveBackwards(30));
-		addSequential(new TurnLeftFast(-90));
-		addSequential(new TurnRightSlow(-90));
+		addSequential(new TurnLeftFast(-65));
+		addSequential(new TurnRightSlow(-65));
 		addSequential(new DriveForward(30));
 		addSequential(new LineUpBoiler());
 		addSequential(new Shoot());

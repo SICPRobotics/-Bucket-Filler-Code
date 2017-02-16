@@ -39,7 +39,6 @@ public class DriveForward extends Command
 	protected void execute() 
 	{
 		DriveTrain.driveForward();
-		System.out.println("Driving forward");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

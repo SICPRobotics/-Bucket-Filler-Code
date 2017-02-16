@@ -26,7 +26,7 @@ public class TurnRightSlow extends Command {
 	@Override
 	protected void initialize() 
 	{
-		System.out.println("turning right slow ANGELA IS THE COOLEST");
+		System.out.println("WE ARE TURNING RIGHT SLOWLY");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -35,6 +35,8 @@ public class TurnRightSlow extends Command {
 	{
 		DriveTrain.turnRightSlow();
 		System.out.println(Sensors.gyroAngle());
+		System.out.println("WE ARE TURNING RIGHT SLOWLY");
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

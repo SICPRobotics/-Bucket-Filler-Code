@@ -37,7 +37,6 @@ int distance;
 	protected void execute() 
 	{
 		DriveTrain.driveBackward();
-		System.out.println("Driving backward");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
