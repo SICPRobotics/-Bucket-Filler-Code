@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot 
@@ -29,7 +30,6 @@ public class Robot extends IterativeRobot
 	@Override
 	public void robotInit() 
 	{
-
 	}
 
 		@Override
@@ -47,6 +47,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
+	
 		autonomousCommand = new AutoLinedUpCenterBlue();
 		autonomousCommand.start();
 	}

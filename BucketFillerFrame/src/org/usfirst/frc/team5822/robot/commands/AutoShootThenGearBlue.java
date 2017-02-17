@@ -15,11 +15,9 @@ public class AutoShootThenGearBlue extends CommandGroup {
     	addSequential(new Shoot());
     	addSequential(new TurnRightFast(1));
     	addSequential(new TurnLeftSlow(1));
-    	addSequential(new TurnRightFast(1));
-    	addSequential(new TurnLeftSlow(1));
-    	//addSequential(new TurnRight180(1)); //Code for this later if easier but we already essentially have this code.
     	addSequential(new DriveForward(1)); //Heads to the Peg
-    	//addSequential(new Turn) // This is for later, when we know what angles are
+    	addSequential(new TurnRightSlow(1));
+    	addSequential(new LineUpGear());
     	addSequential(new DriveForward(1));
     	addSequential(new WaitForPilot());
     }
