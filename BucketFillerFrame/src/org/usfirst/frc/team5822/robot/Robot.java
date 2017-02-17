@@ -4,6 +4,7 @@ package org.usfirst.frc.team5822.robot;
 import org.usfirst.frc.team5822.robot.commands.AutoLinedUpCenterBlue;
 import org.usfirst.frc.team5822.robot.commands.AutoLinedUpCenterRed;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5822.robot.subsystems.Intake;
 import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 import org.usfirst.frc.team5822.robot.subsystems.Shooter;
 
@@ -21,15 +22,16 @@ public class Robot extends IterativeRobot
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Shooter shooter = new Shooter();
 	public static final Sensors sensors = new Sensors();
+	public static final Intake intake = new Intake();
 	//public static AnalogInput ultra;
-	//RobotDrive wheelz;
+	SICPRobotDrive wheelz;
 //	ADXRS450_Gyro gyro;
 	
 
 	@Override
 	public void robotInit() 
 	{
-		//wheelz = new RobotDrive(0, 1, 2, 3);
+		wheelz = new SICPRobotDrive(0, 1, 2, 3);
 		//SmartDashboard.putNumber("Sonar Distance", ultra.RangeInInches());
 //		gyro = new ADXRS450_Gyro();
 //		SmartDashboard.putNumber("Gyro Distance", gyro.getAngle());
@@ -76,7 +78,7 @@ public class Robot extends IterativeRobot
 		{
 			//see OI for other button functions
 			Scheduler.getInstance().run();
-			//JoystickFunctions.joystickDrive(wheelz);
+			JoystickFunctions.joystickDrive(wheelz);
 			//gyro.reset();
 			//System.out.println("gyro reset");
 			//System.out.println(gyro.getAngle());

@@ -10,11 +10,11 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 /**
  *
  */
-public class DriveBackwards extends Command {
+public class DriveBackward extends Command {
 	
 int distance;
 	Timer timer = new Timer();
-	public DriveBackwards(int encoderDistance) 
+	public DriveBackward(int encoderDistance) 
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);

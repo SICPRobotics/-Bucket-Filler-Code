@@ -6,7 +6,7 @@ import org.usfirst.frc.team5822.robot.commands.GearVisionEnable;
 import org.usfirst.frc.team5822.robot.commands.HighGoalAngle;
 import org.usfirst.frc.team5822.robot.commands.HighGoalDistance;
 import org.usfirst.frc.team5822.robot.commands.HighGoalVisionEnable;
-import org.usfirst.frc.team5822.robot.commands.Intake;
+import org.usfirst.frc.team5822.robot.commands.Swallow;
 import org.usfirst.frc.team5822.robot.commands.Outtake;
 import org.usfirst.frc.team5822.robot.commands.Shoot;
 
@@ -32,8 +32,8 @@ public class OI
 	{
 		buttonX.whenPressed(new Shoot()); //need to write code for shoot
 		buttonY.whenPressed(new Climb()); //need to write code for climb
-		buttonA.whileHeld(new Intake()); //yeah none of these really do anything rn sooooooo
-		buttonB.whileHeld(new Outtake()); //write some code for it
+		buttonA.whileHeld(new Swallow()); 
+		buttonB.whileHeld(new Outtake()); 
 		button7.whenPressed(new LineUpGear());
 		
 		button8.whenPressed(new GearVisionEnable());
