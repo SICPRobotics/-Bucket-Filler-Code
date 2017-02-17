@@ -23,7 +23,10 @@ public class HGVision extends Command {
     {
     	
     	if (VisionPID.hGVision)
-    		Robot.vision.enable(); 
+    	{
+    		Robot.vision.enable();
+    		System.out.println("PID enabled");
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -11,8 +11,8 @@ public class DriveTrain extends PIDSubsystem
 {
 
 	
-	//static SICPRobotDrive drive;
-	//public static RobotDrive drive;
+	/*static SICPRobotDrive drive;*/
+	public static RobotDrive drive;
 	ADXRS450_Gyro gyro;
 	static double setpoint; 
 	
@@ -22,10 +22,15 @@ public class DriveTrain extends PIDSubsystem
 		super("DriveTrain", .2, .000, 0);// The constructor passes a name for the subsystem and the P, I and D constants that are sueed when computing the motor output
 		setAbsoluteTolerance(0.001);
 		getPIDController().setContinuous(false);
-		//drive = new RobotDrive(0,1,2,3);
+		drive = new RobotDrive(0,1,2,3);
 		gyro = new ADXRS450_Gyro();
 		gyro.reset();
 		setpoint = 0; 
+	}
+	
+	public static void setOuts(double left, double right)
+	{
+		drive.setLeftRightMotorOutputs(left, right); 
 	}
 		
 	public static double pidAt(double set)

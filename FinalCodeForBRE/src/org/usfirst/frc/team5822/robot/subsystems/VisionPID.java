@@ -26,7 +26,7 @@ public class VisionPID extends PIDSubsystem {
 	
 	static NetworkTable piTable;
 	ITableListener_WB piListen = new ITableListener_WB();
-	RobotDrive drive;
+	
 
 	//ITableListener_WB piListen = new ITableListener_WB();
 	public static boolean gearVision, hGVision; 
@@ -36,7 +36,7 @@ public class VisionPID extends PIDSubsystem {
 	public VisionPID() {
 		super(20, 0, 0);
 		//setAbsoluteTolerance(0.005);
-		drive = new RobotDrive(0,1,2,3);
+		
 		gearVision = false; 
 		hGVision = false; 
 		noVision = true;
@@ -69,12 +69,14 @@ public class VisionPID extends PIDSubsystem {
 	@Override
 	protected double returnPIDInput()
 	{
-		if (gearVision)
+		/*if (gearVision)
 			return piTable.getNumber("Center Gear", 10); 
 		else if (hGVision)
 			return piTable.getNumber("Center HG", 10); 
 		else 
-			return 0; 
+			return 0; */
+		System.out.println("USING PID INPUT");
+		return 30; 
 	}
 
 	public void writeTable()
@@ -94,6 +96,8 @@ public class VisionPID extends PIDSubsystem {
 	protected void usePIDOutput(double output) 
 	{
 		System.out.println("OUTPUT: " + output);
+		DriveTrain.setOuts(.2, .2);
+		/*
 		if (hGVision)
 		{
 		
@@ -111,7 +115,7 @@ public class VisionPID extends PIDSubsystem {
 		{
 			drive.drive(output, 0);
 			System.out.println("Should be driving");
-			/*center =center = Math.abs(piTable.getNumber("Center G",10));
+			center =center = Math.abs(piTable.getNumber("Center G",10));
 			distance = piTable.getNumber("Distance G",10);
 			tolerance = 25+(2*piTable.getNumber("Width G",10)); 
 					
@@ -139,7 +143,7 @@ public class VisionPID extends PIDSubsystem {
 				myRobot.setLeftRightMotorOutputs(-.15-(.25)*output, -.15+(.25)*output);
 				System.out.println("NOT CENTERED: " +output);
 			}*/	
-		}
+		//}
 	}
 	
 	public static boolean toggleGear()
