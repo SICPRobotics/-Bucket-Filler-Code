@@ -8,6 +8,7 @@ import org.usfirst.frc.team5822.robot.commands.GearCG;
 import org.usfirst.frc.team5822.robot.commands.GearVision;
 import org.usfirst.frc.team5822.robot.commands.HGVision;
 import org.usfirst.frc.team5822.robot.commands.HighGoalCG;
+import org.usfirst.frc.team5822.robot.commands.ToggleHG;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,8 +34,12 @@ public class OI {
 
 	public OI() 
 	{
-		j1.whileHeld(new HighGoalCG());
+		//j1.whileHeld(new HighGoalCG());
 		j2.whileHeld(new GearCG());
+		j1.whenActive(new ToggleHG());
+		j1.whileActive(new HGVision());
+		j1.whenInactive(new ToggleHG());
+		
 		
 		
 	}
