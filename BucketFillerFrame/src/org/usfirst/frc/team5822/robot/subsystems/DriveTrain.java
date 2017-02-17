@@ -15,7 +15,7 @@ public class DriveTrain extends PIDSubsystem
 
 	
 	//static SICPRobotDrive drive;
-	static RobotDrive drive;
+	public static SICPRobotDrive wheelz;
 	ADXRS450_Gyro gyro;
 	static double setpoint; 
 	
@@ -25,7 +25,7 @@ public class DriveTrain extends PIDSubsystem
 		super("DriveTrain", .2, .000, 0);// The constructor passes a name for the subsystem and the P, I and D constants that are sueed when computing the motor output
 		setAbsoluteTolerance(0.001);
 		getPIDController().setContinuous(false);
-		drive = new RobotDrive(0,1,2,3);
+		wheelz = new SICPRobotDrive(0,1,2,3);
 		gyro = new ADXRS450_Gyro();
 		gyro.reset();
 		setpoint = 0; 
@@ -44,49 +44,38 @@ public class DriveTrain extends PIDSubsystem
     }
 
     protected void usePIDOutput(double output) {
-    	drive.setLeftRightMotorOutputs(.3 + output, .3 - output);; // this is where the computed output value fromthe PIDController is applied to the motor
+    	wheelz.setLeftRightMotorOutputs(.3 + output, .3 - output);; // this is where the computed output value fromthe PIDController is applied to the motor
     }
 	
 	public static void driveForward()
 	{
-		drive.drive(0.15 , 0.0);
+		wheelz.drive(0.15 , 0.0);
 	}
 	
 	public static void driveBackward()
 	{
-		drive.drive(-0.15, 0.0);
+		wheelz.drive(-0.15, 0.0);
 	}
 	
 	public static void turnLeftSlow()
 	{
-		//turn left real slow boi
-		drive.setLeftRightMotorOutputs(-.2, .2);
-	
+		wheelz.setLeftRightMotorOutputs(-.2, .2);
 	}
 	
 	public static void turnLeftFast()
 	{
-		//turn left real fast boi
-		drive.drive(0.3, -1);
+		wheelz.drive(0.3, -1);
 	}
 	
 	public static void turnRightSlow()
 	{
-		//turn right super duper slowly maaaaaan
-		drive.setLeftRightMotorOutputs(0.15, -.15);
+		wheelz.setLeftRightMotorOutputs(0.15, -.15);
 	}
 	
 	public static void turnRightFast()
 	{
-		//turn right super duper fast boiiiii
-		drive.drive(0.3, 1);
-		
+		wheelz.drive(0.3, 1);
 	}
-	
-	/*public static double returnSpeed()
-	{
-		drive.
-	}*/
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

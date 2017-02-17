@@ -13,8 +13,6 @@ public class Outtake extends Command
     public Outtake() 
     {
     	requires(Robot.intake);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
