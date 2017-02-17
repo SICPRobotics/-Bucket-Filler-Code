@@ -4,6 +4,7 @@ import org.usfirst.frc.team5822.robot.Robot;
 import org.usfirst.frc.team5822.robot.subsystems.VisionPID;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -26,6 +27,7 @@ public class GearVision extends Command {
     	{
     		Robot.vision.enable(); 
     		Robot.vision.setSetpoint(0);
+    		SmartDashboard.putBoolean("Running Gear Vision", true); 
     	}
     }
 
@@ -40,9 +42,13 @@ public class GearVision extends Command {
     protected boolean isFinished() 
     {
     	
-    	if (VisionPID.gearVision)
-    	   return true; 
-       
+    	if (!VisionPID.gearVision)
+    	{
+    		SmartDashboard.putBoolean("Running Gear Vision", false); 
+    		Robot.vision.disable();
+    		return true; 
+    	   
+    	}
     	return false;
     }
 

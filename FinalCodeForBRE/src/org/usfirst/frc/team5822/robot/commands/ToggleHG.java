@@ -4,6 +4,7 @@ import org.usfirst.frc.team5822.robot.Robot;
 import org.usfirst.frc.team5822.robot.subsystems.VisionPID;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,6 +20,8 @@ public class ToggleHG extends Command {
     protected void initialize() 
     {
     	VisionPID.toggleHG(); 
+    	System.out.println("TOGGLED HG INITIALIZED");
+    	SmartDashboard.putBoolean("Toggle HG Called", true);
     	notDone = true; 
     }
 

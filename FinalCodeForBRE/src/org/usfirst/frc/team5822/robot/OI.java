@@ -8,6 +8,7 @@ import org.usfirst.frc.team5822.robot.commands.GearCG;
 import org.usfirst.frc.team5822.robot.commands.GearVision;
 import org.usfirst.frc.team5822.robot.commands.HGVision;
 import org.usfirst.frc.team5822.robot.commands.HighGoalCG;
+import org.usfirst.frc.team5822.robot.commands.ToggleGear;
 import org.usfirst.frc.team5822.robot.commands.ToggleHG;
 
 /**
@@ -27,6 +28,7 @@ public class OI {
 	Button button9 = new JoystickButton(joystick, 9);	
 	Button button10 = new JoystickButton(joystick, 10);
 	Button button11 = new JoystickButton(joystick, 11);
+	Button button12 = new JoystickButton(joystick, 12);
 	Button buttonY = new JoystickButton(xboxCtr, 4 );
 	Button buttonX = new JoystickButton(xboxCtr, 3);
 	Button buttonA = new JoystickButton(xboxCtr, 1);
@@ -35,10 +37,11 @@ public class OI {
 	public OI() 
 	{
 		//j1.whileHeld(new HighGoalCG());
-		j2.whileHeld(new GearCG());
-		j1.whenActive(new ToggleHG());
-		j1.whileActive(new HGVision());
-		j1.whenInactive(new ToggleHG());
+		button11.whenActive(new GearCG());
+		button12.whenActive(new HighGoalCG());
+			
+		button11.whenInactive(new GearCG());
+		button12.whenInactive(new HighGoalCG());
 		
 		
 		

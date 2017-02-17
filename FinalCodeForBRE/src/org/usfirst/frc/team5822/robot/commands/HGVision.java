@@ -4,6 +4,7 @@ import org.usfirst.frc.team5822.robot.Robot;
 import org.usfirst.frc.team5822.robot.subsystems.VisionPID;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -26,6 +27,7 @@ public class HGVision extends Command {
     	{
     		Robot.vision.enable();
     		System.out.println("PID enabled");
+    		SmartDashboard.putBoolean("RUNNING HG VISION", true); 
     	}
     }
 
@@ -40,7 +42,11 @@ public class HGVision extends Command {
     {
     	
         if (!VisionPID.hGVision)
-        		return true; 
+        {
+        	Robot.vision.disable();
+        	return true; 
+        }
+        		
         
     	return false;
     }
@@ -48,6 +54,8 @@ public class HGVision extends Command {
     // Called once after isFinished returns true
     protected void end() 
     {
+    	System.out.println("END OF HG COMMAND");
+    	SmartDashboard.putBoolean("RUNNING HG VISION", false); 
     	Robot.vision.disable();
     }
 
