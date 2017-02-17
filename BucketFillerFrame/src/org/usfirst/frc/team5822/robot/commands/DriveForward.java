@@ -14,14 +14,16 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 public class DriveForward extends Command 
 {
 	int distance;
+	int angle;
 	Timer timer = new Timer();
 	
-	public DriveForward(int encoderDistance) 
+	public DriveForward(int encoderDistance, int desiredAngle) 
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
 		requires(Robot.sensors);
 		distance = encoderDistance;
+		angle = desiredAngle;
 
 	}
 
@@ -31,15 +33,15 @@ public class DriveForward extends Command
 	{
 		//Sensors.resetEncoders();
 		System.out.println("Drive Forward init");
-		timer.start();
+		Robot.driveTrain.enable();
+		Robot.driveTrain.setSetpoint(angle);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() 
 	{
-		DriveTrain.driveForward();
-		System.out.println("Driving forward");
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

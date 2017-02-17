@@ -50,16 +50,16 @@ public class Sensors extends Subsystem
 	
 	public static void resetGyro()
 	{
-		System.out.println("haylo");
+		//System.out.println("haylo");
 		gyro.reset();
 	}
 	
 	public static double gyroAngle()
 	{
-		System.out.println("We're here in gyroAngle()");
-		double x = gyro.getAngle();
-		System.out.println("We made it past getting the angle");
-		System.out.println(x);
+		//System.out.println("We're here in gyroAngle()");
+		//double x = gyro.getAngle();
+		//System.out.println("We made it past getting the angle");
+		//System.out.println(x);
 		return gyro.getAngle();
 	}
 	
