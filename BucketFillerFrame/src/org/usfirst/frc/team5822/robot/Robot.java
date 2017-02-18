@@ -26,10 +26,13 @@ public class Robot extends IterativeRobot
 	public static final Sensors sensors = new Sensors();
 	public static final Intake intake = new Intake();
 	public static final Climber climber = new Climber();
+	public static OI oi;
 
 	@Override
 	public void robotInit() 
 	{
+		System.out.println("running");
+		oi = new OI();
 	}
 
 		@Override
@@ -61,7 +64,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void teleopInit() 
 	{
-		Scheduler.getInstance().removeAll();
+		//Scheduler.getInstance().removeAll();
 	}
 
 		@Override

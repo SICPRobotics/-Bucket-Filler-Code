@@ -15,9 +15,9 @@ public class HGVision extends Command {
     public HGVision() 
     {
         requires (Robot.vision); 
+       
       
-        
-       }
+     }
 
     // Called just before this Command runs the first time
     protected void initialize() 
@@ -27,7 +27,7 @@ public class HGVision extends Command {
     	{
     		Robot.vision.enable();
     		System.out.println("PID enabled");
-    		SmartDashboard.putBoolean("RUNNING HG VISION", true); 
+    		 
     	}
     }
 
@@ -55,7 +55,6 @@ public class HGVision extends Command {
     protected void end() 
     {
     	System.out.println("END OF HG COMMAND");
-    	SmartDashboard.putBoolean("RUNNING HG VISION", false); 
     	Robot.vision.disable();
     }
 

@@ -22,6 +22,7 @@ public class Climb extends Command {
 	protected void execute() 
 	{
 		Robot.climber.climb();
+		System.out.println("Climb");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

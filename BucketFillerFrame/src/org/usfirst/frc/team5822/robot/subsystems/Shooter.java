@@ -21,7 +21,7 @@ public class Shooter extends Subsystem {
 	
     public Shooter()
     {
-		shootMotor = new CANTalon(1); 
+		shootMotor = new CANTalon(4); 
 		shootMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder); //Set the feedback device that is hooked up to the talon
 		shootMotor.setPID(1.3, .001, 35, 0.001, 0, 0, 0);
 		shootMotor.reverseSensor(true); 
@@ -59,6 +59,12 @@ public class Shooter extends Subsystem {
 			
 		//write the code to run the shooter here
 	}
+    
+    public void stopShooting()
+    {
+    	shootMotor.set(0);
+    	indexer.set(0);
+    }
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

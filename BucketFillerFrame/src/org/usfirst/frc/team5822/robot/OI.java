@@ -1,9 +1,12 @@
 package org.usfirst.frc.team5822.robot;
 
 import org.usfirst.frc.team5822.robot.commands.Climb;
+import org.usfirst.frc.team5822.robot.commands.KeepOut;
 import org.usfirst.frc.team5822.robot.commands.Swallow;
-import org.usfirst.frc.team5822.robot.commands.Outtake;
 import org.usfirst.frc.team5822.robot.commands.Shoot;
+import org.usfirst.frc.team5822.robot.commands.StopClimb;
+import org.usfirst.frc.team5822.robot.commands.StopIntake;
+import org.usfirst.frc.team5822.robot.commands.StopShooting;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -13,16 +16,23 @@ public class OI
 {
 	Joystick xboxCtr = new Joystick(1);
 
-	Button buttonY = new JoystickButton(xboxCtr, 4);
-	Button buttonX = new JoystickButton(xboxCtr, 3);
 	Button buttonA = new JoystickButton(xboxCtr, 1); 
 	Button buttonB = new JoystickButton(xboxCtr, 2);
+	Button buttonX = new JoystickButton(xboxCtr, 3);
+	Button buttonY = new JoystickButton(xboxCtr, 4); 
 
 	public OI()
 	{
-		buttonX.whileHeld(new Shoot());
-		buttonY.whileHeld(new Climb());
-		buttonA.whileHeld(new Swallow()); 
-		buttonB.whileHeld(new Outtake()); 		
+		buttonA.whenActive(new Swallow()); 		
+		buttonA.whenInactive(new StopIntake());
+		
+		buttonB.whenActive(new KeepOut());
+		buttonB.whenInactive(new StopIntake());
+		
+		buttonX.whenActive(new Shoot());
+		buttonX.whenInactive(new StopShooting());
+		
+		buttonY.whenActive(new Climb());
+		buttonY.whenInactive(new StopClimb());
 	}
 }

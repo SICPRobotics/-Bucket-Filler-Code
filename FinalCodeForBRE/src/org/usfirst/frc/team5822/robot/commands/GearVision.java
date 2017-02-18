@@ -16,6 +16,7 @@ public class GearVision extends Command {
     public GearVision() 
     {
     	requires (Robot.vision);
+    	
      
     }
 
@@ -27,7 +28,7 @@ public class GearVision extends Command {
     	{
     		Robot.vision.enable(); 
     		Robot.vision.setSetpoint(0);
-    		SmartDashboard.putBoolean("Running Gear Vision", true); 
+    	
     	}
     }
 
@@ -44,7 +45,7 @@ public class GearVision extends Command {
     	
     	if (!VisionPID.gearVision)
     	{
-    		SmartDashboard.putBoolean("Running Gear Vision", false); 
+    		
     		Robot.vision.disable();
     		return true; 
     	   

@@ -1,9 +1,14 @@
 
 package org.usfirst.frc.team5822.robot;
 
+import org.opencv.core.Mat;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.VisionPID;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -30,6 +35,23 @@ public class Robot extends IterativeRobot {
 	public static final VisionPID vision = new VisionPID();
 	public static final DriveTrain driveTrain = new DriveTrain();
 //	ITableListener_WB piListen = new ITableListener_WB();
+	UsbCamera cam0; 
+	UsbCamera cam1; 
+	Mat image;
+	Mat image1; 
+	CvSink cvSink; 
+	CvSource cvSource;
+	CvSink cvSink1; 
+	CvSource cvSource1;
+	
+	final String defaultAuto = "Default";
+	final String customAuto = "My Auto";
+	String autoSelected;
+	
+	SendableChooser<String> chooseAlliance = new SendableChooser<>(); 
+	SendableChooser<String> chooseShoot = new SendableChooser<>(); 
+	SendableChooser<String> chooseGear = new SendableChooser<>(); 
+	SendableChooser<String> chooseOrder = new SendableChooser<>(); 
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -38,14 +60,70 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-//		NetworkTable.setServerMode();
-//		piTable = NetworkTable.getTable("piTable"); 
-//		NetworkTable.setUpdateRate(0.01);
-//		piListen.setCount(0);
-//		piTable.addTableListener(piListen, true);
-		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		vision.writeTable();
+		
+		chooseShoot.addObject("Cross Baseline Only", "crossOnly");
+		chooseShoot.addObject("Shoot Only", "shootOnly");
+		chooseShoot.addObject("Gear Only", "gearOnly");
+		chooseShoot.addObject("Gear and Shoot", "gearAndShoot");
+		
+		chooseGear.addObject("Peg Position 1", "peg1");
+		chooseGear.addObject("Peg Poistion 2", "peg2");
+		chooseGear.addObject("Peg Position 3", "peg3");
+		
+		chooseAlliance.addObject("Red Alliance", "red");
+		chooseAlliance.addObject("Blue Alliance", "blue");
+		
+		chooseOrder.addObject("Peg First", "pegFirst");
+		chooseOrder.addObject("Shoot First", "shootFirst");
+		chooseOrder.addObject("Neither", "neither");
+			
+		SmartDashboard.putData("Auto Gear", chooseGear);
+		SmartDashboard.putData("Auto Shoot", chooseShoot);
+		SmartDashboard.putData("Auto Alliance", chooseAlliance);
+		SmartDashboard.putData("Auto Order", chooseOrder);
+		
+		//TODO: Add to this thread all smart dashboard values you would like updated 
+		Thread updateSmartDashBoard = new Thread(() -> { 
+			while(!Thread.interrupted())
+			{
+				piTable.putBoolean("HGVision Enabled", VisionPID.hGVision); 
+				piTable.putBoolean("Gear Vision Enabled", VisionPID.gearVision); 
+			}
+		});
+		updateSmartDashBoard.start();
+		
+		Thread t = new Thread(() -> {
+			cam0 = new UsbCamera ("USB Camera 0", 0);
+			cam0.setResolution(320,240);
+			cam0.setFPS(20);
+			
+			cam1 = new UsbCamera ("USB Camera 1", 1);
+			cam1.setResolution(320,240);
+			cam1.setFPS(20);
+			
+			cvSink = CameraServer.getInstance().getVideo(cam0);
+			cvSink.setEnabled(true);
+			cvSource = CameraServer.getInstance().putVideo("Current View", 320, 240);
+			image = new Mat();	 
+			
+			cvSink1 = CameraServer.getInstance().getVideo(cam1);
+			cvSink1.setEnabled(true);
+			cvSource1 = CameraServer.getInstance().putVideo("Current View 1", 320, 240);
+			image1 = new Mat();	
+			
+			while(!Thread.interrupted()) 
+			{
+				cvSink.grabFrame(image);
+				cvSource.putFrame(image);
+			
+				cvSink1.grabFrame(image1);
+				cvSource1.putFrame(image1);
+			}
+		}
+		);
+        t.start();
 	}
 
 	/**

@@ -22,13 +22,14 @@ public class OI {
 	
 	Button j1 = new JoystickButton(joystick, 1); 
 	Button j2 = new JoystickButton(joystick, 2); 
+	Button j11 = new JoystickButton(joystick, 11);
+	Button j12 = new JoystickButton(joystick, 12);
 	
 	Button button7 = new JoystickButton(joystick, 7);
 	Button button8 = new JoystickButton(joystick, 8);
 	Button button9 = new JoystickButton(joystick, 9);	
 	Button button10 = new JoystickButton(joystick, 10);
-	Button button11 = new JoystickButton(joystick, 11);
-	Button button12 = new JoystickButton(joystick, 12);
+	
 	Button buttonY = new JoystickButton(xboxCtr, 4 );
 	Button buttonX = new JoystickButton(xboxCtr, 3);
 	Button buttonA = new JoystickButton(xboxCtr, 1);
@@ -37,11 +38,11 @@ public class OI {
 	public OI() 
 	{
 		//j1.whileHeld(new HighGoalCG());
-		button11.whenActive(new GearCG());
-		button12.whenActive(new HighGoalCG());
+		j11.whenActive(new GearCG());
+		j12.whenActive(new HighGoalCG());
 			
-		button11.whenInactive(new GearCG());
-		button12.whenInactive(new HighGoalCG());
+		j11.whenInactive(new GearCG());
+		j12.whenInactive(new HighGoalCG());
 		
 		
 		

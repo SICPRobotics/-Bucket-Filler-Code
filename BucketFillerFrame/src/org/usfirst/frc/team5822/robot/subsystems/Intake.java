@@ -16,12 +16,17 @@ public class Intake extends Subsystem
 	
 	public void takeIn()
 	{
-		cacaw.set(.75);
+		cacaw.set(-.85);
 	}
 	
-	public void eject()
+	public void keepOut()
 	{
-		cacaw.set(-0.75);
+		cacaw.set(.4);
+	}
+	
+	public void doNothing()
+	{
+		cacaw.set(0);
 	}
 
     public void initDefaultCommand() 

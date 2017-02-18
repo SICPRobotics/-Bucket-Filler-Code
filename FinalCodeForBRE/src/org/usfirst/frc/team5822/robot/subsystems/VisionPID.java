@@ -40,8 +40,8 @@ public class VisionPID extends PIDSubsystem {
 		gearVision = false; 
 		hGVision = false; 
 		noVision = true;
-		//piTable.putBoolean("HGVision Enabled", hGVision); 
-		//piTable.putBoolean("Gear Vision Enabled", gearVision); 
+		piTable.putBoolean("HGVision Enabled", hGVision); 
+		piTable.putBoolean("Gear Vision Enabled", gearVision); 
 		center = 0; 
 		tolerance = 0; 
 		distance = 0; 

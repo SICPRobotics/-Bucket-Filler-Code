@@ -27,6 +27,7 @@ public class Shoot extends Command {
 	protected void execute() 
 	{
 		Shooter.shoot();
+		System.out.println("Shooting");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
