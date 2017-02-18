@@ -69,14 +69,14 @@ public class VisionPID extends PIDSubsystem {
 	@Override
 	protected double returnPIDInput()
 	{
-		/*if (gearVision)
-			return piTable.getNumber("Center Gear", 10); 
+		if (gearVision)
+			return piTable.getNumber("Center Gear", 0); 
 		else if (hGVision)
-			return piTable.getNumber("Center HG", 10); 
+			return piTable.getNumber("Center HG",0); 
 		else 
-			return 0; */
-		System.out.println("USING PID INPUT");
-		return 30; 
+			return 0; 
+		//System.out.println("USING PID INPUT");
+		//return 30; 
 	}
 
 	public void writeTable()
@@ -97,7 +97,7 @@ public class VisionPID extends PIDSubsystem {
 	{
 		System.out.println("OUTPUT: " + output);
 		DriveTrain.setOuts(.2, .2);
-		/*
+		
 		if (hGVision)
 		{
 		
@@ -135,7 +135,7 @@ public class VisionPID extends PIDSubsystem {
 			{
 				drive.setLeftRightMotorOutputs(.15, .15);
 				System.out.println("BACKWARD!");
-			}*/
+			}
 			
 						
 			/*else

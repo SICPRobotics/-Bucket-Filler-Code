@@ -27,6 +27,7 @@ public class Shooter extends Subsystem {
 		shootMotor.reverseSensor(true); 
 		tele = new Timer();
 		indexer = new VictorSP(7);
+		//shootMotor = new VictorSP(5);
     }
 
     public static void init()
@@ -43,7 +44,7 @@ public class Shooter extends Subsystem {
     public static void shoot()
 	{
 		if (tele.get()<2)
-			shootMotor.set(.75);
+			shootMotor.set(.4);
 		else 
 			flag = true; 
 		if (flag)
@@ -54,6 +55,7 @@ public class Shooter extends Subsystem {
 			shootMotor.reverseSensor(true); 
 			shootMotor.enableControl(); //Enable PID control on the talon
 			flag = false;
+			//shootMotor.set(.7);
 			SmartDashboard.putNumber("Speed", shootMotor.getSpeed());
 		}
 			
