@@ -6,15 +6,17 @@ public class AutoLinedUpRightBlue extends CommandGroup
 {
 	public AutoLinedUpRightBlue()
 	{
-		addSequential(new DriveForward(1, 0 ));
-		//addSequential(new TurnLeft(1));
-		addSequential(new DriveForward(1, 0));
+		addSequential(new DriveForward(1));
+		addSequential(new TurnLeftFast(1));
+		addSequential(new TurnRightSlow(1));
+		addSequential(new LineUpGear());
 		addSequential(new WaitForPilot());
-		addSequential(new DriveBackwards(1));
-		//addSequential(new TurnLeft(1));
-		addSequential(new DriveForward(1, 0));
-		//addSequential(new TurnRight(1));
-		addSequential(new DriveForward(1 ,0 ));
+		addSequential(new DriveBackward(1));
+		addSequential(new TurnLeftFast(1));
+		addSequential(new TurnRightSlow(1));
+		addSequential(new DriveForward(1));
+		addSequential(new TurnLeftSlow(1));
+		addSequential(new DriveForward(1));
 		addSequential(new LineUpBoiler());
 		addSequential(new Shoot());
 		

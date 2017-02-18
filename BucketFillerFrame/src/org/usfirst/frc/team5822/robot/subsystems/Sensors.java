@@ -11,55 +11,50 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Sensors extends Subsystem 
 {
 	static ADXRS450_Gyro gyro;
-	//static Encoder leftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //I don't know if this is the right way to construct this but it's what Martin had
-	//static Encoder rightEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //Check this later because I don't have time right now
-	static AnalogInput ultra; //fill in based on which port it is plugged in
+	static Encoder leftEncoder; 
+	static Encoder rightEncoder; 
+//	static AnalogInput ultra; //fill in based on which port it is plugged in
 	
 	public Sensors()
 	{
 		gyro  = new ADXRS450_Gyro();
-		ultra = new AnalogInput(1);
+//		ultra = new AnalogInput(1);
+		leftEncoder = new Encoder(0, 1);
+		rightEncoder = new Encoder(2, 3);
 	}
 	
-	// Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	public static double sonarDistance()
-	{
-		double voltage = ultra.getAverageVoltage(); // reads the range on the ultrasonic sensor
-		double sensitivity = 10;
-		double range = voltage * sensitivity * 4.1898; //4.1898 from excel equation
-		System.out.println(range);
-		return range;
-	}
+//	public static double sonarDistance()
+//	{
+//		double voltage = ultra.getAverageVoltage(); // reads the range on the ultrasonic sensor
+//		double sensitivity = 10;
+//		double range = voltage * sensitivity * 4.1898; //4.1898 from excel equation
+//		System.out.println(range);
+//		return range;
+//	}
 	
 	public static void resetEncoders()
 	{
-		//leftEncoder.reset();
-		//rightEncoder.reset();
+		leftEncoder.reset();
+		rightEncoder.reset();
 	}
 	
-//	public static double leftEncoderDistance()
-//	{
-//		return leftEncoder.getDistance();
-//	}
-//	
-//	public static double rightEncoderDistance()
-//	{
-//		return rightEncoder.getDistance();
-//	}
+	public static double leftEncoderDistance()
+	{
+		return leftEncoder.getDistance();
+	}
+	
+	public static double rightEncoderDistance()
+	{
+		return rightEncoder.getDistance();
+	}
 	
 	public static void resetGyro()
 	{
-		//System.out.println("haylo");
 		gyro.reset();
 	}
 	
 	public static double gyroAngle()
 	{
-		//System.out.println("We're here in gyroAngle()");
-		//double x = gyro.getAngle();
-		//System.out.println("We made it past getting the angle");
-		//System.out.println(x);
 		return gyro.getAngle();
 	}
 	
