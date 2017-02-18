@@ -10,6 +10,7 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -31,9 +32,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static NetworkTable piTable;
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
-	public static final VisionPID vision = new VisionPID();
-	public static final DriveTrain driveTrain = new DriveTrain();
+	SendableChooser<Command> chooser;
+	public static VisionPID vision = null;
+	public static DriveTrain driveTrain = null;
 //	ITableListener_WB piListen = new ITableListener_WB();
 	UsbCamera cam0; 
 	UsbCamera cam1; 
@@ -47,21 +48,31 @@ public class Robot extends IterativeRobot {
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	String autoSelected;
+	PWM leds3;
+	 
 	
-	SendableChooser<String> chooseAlliance = new SendableChooser<>(); 
-	SendableChooser<String> chooseShoot = new SendableChooser<>(); 
-	SendableChooser<String> chooseGear = new SendableChooser<>(); 
-	SendableChooser<String> chooseOrder = new SendableChooser<>(); 
-
+	SendableChooser<String> chooseAlliance; 
+	SendableChooser<String> chooseShoot; 
+	SendableChooser<String> chooseGear; 
+	SendableChooser<String> chooseOrder; 
+	public Robot() {
+		chooseAlliance = new SendableChooser<>(); 
+		chooseShoot = new SendableChooser<>(); 
+		chooseGear = new SendableChooser<>(); 
+		chooseOrder = new SendableChooser<>(); 
+		chooser = new SendableChooser<>();
+	}
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		Robot.vision = new VisionPID();
+		Robot.driveTrain = new DriveTrain();
 		oi = new OI();
 		SmartDashboard.putData("Auto mode", chooser);
-		vision.writeTable();
+
 		
 		chooseShoot.addObject("Cross Baseline Only", "crossOnly");
 		chooseShoot.addObject("Shoot Only", "shootOnly");
@@ -83,6 +94,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto Shoot", chooseShoot);
 		SmartDashboard.putData("Auto Alliance", chooseAlliance);
 		SmartDashboard.putData("Auto Order", chooseOrder);
+		 
+		leds3 = new PWM(3); 
 		
 		//TODO: Add to this thread all smart dashboard values you would like updated 
 		Thread updateSmartDashBoard = new Thread(() -> { 
@@ -192,6 +205,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		leds3.setRaw(255);
+		
+		
 	}
 
 	/**

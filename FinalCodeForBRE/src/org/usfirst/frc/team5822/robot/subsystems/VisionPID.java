@@ -25,17 +25,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class VisionPID extends PIDSubsystem {
 	
 	static NetworkTable piTable;
-	ITableListener_WB piListen = new ITableListener_WB();
-	
+	ITableListener_WB piListen;
 
-	//ITableListener_WB piListen = new ITableListener_WB();
 	public static boolean gearVision, hGVision; 
 	static boolean noVision; 
 	double center, tolerance, distance; 
 	
 	public VisionPID() {
 		super(20, 0, 0);
-		//setAbsoluteTolerance(0.005);
+		piListen = new ITableListener_WB();
+		setAbsoluteTolerance(0.005);
+		
+		NetworkTable.setServerMode();
+		piTable = NetworkTable.getTable("piTable"); 
+		NetworkTable.setUpdateRate(0.01);
+		piListen.setCount(0);
+		piTable.addTableListener(piListen, true);
 		
 		gearVision = false; 
 		hGVision = false; 
@@ -45,8 +50,6 @@ public class VisionPID extends PIDSubsystem {
 		center = 0; 
 		tolerance = 0; 
 		distance = 0; 
-
-		
 	}
 
 	@Override
@@ -54,38 +57,27 @@ public class VisionPID extends PIDSubsystem {
 	{
 	}
 
-	/**
-	 * The log method puts interesting information to the SmartDashboard.
-	 */
 	public void log() 
 	{
 		
 	}
 
-	/**
-	 * Use the potentiometer as the PID sensor. This method is automatically
-	 * called by the subsystem.
-	 */
 	@Override
 	protected double returnPIDInput()
 	{
-		if (gearVision)
+		/*if (gearVision)
 			return piTable.getNumber("Center Gear", 0); 
 		else if (hGVision)
 			return piTable.getNumber("Center HG",0); 
 		else 
-			return 0; 
-		//System.out.println("USING PID INPUT");
-		//return 30; 
+			return 0;*/ 
+		System.out.println("USING PID INPUT");
+		return 30; 
 	}
 
 	public void writeTable()
 	{
-		NetworkTable.setServerMode();
-		piTable = NetworkTable.getTable("piTable"); 
-		NetworkTable.setUpdateRate(0.01);
-		piListen.setCount(0);
-		piTable.addTableListener(piListen, true);
+		
 	}
 	
 	/**
@@ -98,23 +90,24 @@ public class VisionPID extends PIDSubsystem {
 		System.out.println("OUTPUT: " + output);
 		DriveTrain.setOuts(.2, .2);
 		
-		if (hGVision)
+		/*if (hGVision)
 		{
 		
-			Math.abs(piTable.getNumber("Center HG",10));
-			tolerance = (1000/piTable.getNumber("Width HG", 10)); 
+			Math.abs(piTable.getNumber("Center HG", 0));
+			tolerance = (1000/piTable.getNumber("Width HG", 0)); 
 			
 			if (-tolerance<=center && center<=tolerance)
-				drive.setLeftRightMotorOutputs(0, 0);
+				DriveTrain.drive.setLeftRightMotorOutputs(0, 0);
 		
 			else 
-				drive.setLeftRightMotorOutputs(-.15-(.15*output), -.15+(.15*output));
-		}
+				DriveTrain.drive.setLeftRightMotorOutputs(-(.15*output), +(.15*output));
+		} */
 		
 		if (gearVision)
 		{
-			drive.drive(output, 0);
-			System.out.println("Should be driving");
+			/*DriveTrain.drive.drive(output, 0);
+			System.out.println("Should be driving");*/
+			
 			center =center = Math.abs(piTable.getNumber("Center G",10));
 			distance = piTable.getNumber("Distance G",10);
 			tolerance = 25+(2*piTable.getNumber("Width G",10)); 
@@ -123,19 +116,20 @@ public class VisionPID extends PIDSubsystem {
 			
 			if (10<distance && distance<20)
 			{
-				drive.setLeftRightMotorOutputs(0, 0);
+				DriveTrain.drive.setLeftRightMotorOutputs(0, 0);
 			}
 			else if (distance>20)
 			{
-				drive.setLeftRightMotorOutputs(-.15-(.15*output), -.15+(.15*output));
+				DriveTrain.drive.setLeftRightMotorOutputs(-.15-(.15*output), -.15+(.15*output));
 				System.out.println("FORWARD!");
 			}
 			
 			else if (distance<10)
 			{
-				drive.setLeftRightMotorOutputs(.15, .15);
+				DriveTrain.drive.setLeftRightMotorOutputs(.15, .15);
 				System.out.println("BACKWARD!");
 			}
+		}
 			
 						
 			/*else
@@ -145,6 +139,7 @@ public class VisionPID extends PIDSubsystem {
 			}*/	
 		//}
 	}
+
 	
 	public static boolean toggleGear()
 	{

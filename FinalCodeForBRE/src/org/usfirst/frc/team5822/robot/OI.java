@@ -17,26 +17,43 @@ import org.usfirst.frc.team5822.robot.commands.ToggleHG;
  */
 public class OI {
 
-	Joystick xboxCtr = new Joystick(1);
-	Joystick joystick = new Joystick(0);
+	Joystick xboxCtr;
+	Joystick joystick;
 	
-	Button j1 = new JoystickButton(joystick, 1); 
-	Button j2 = new JoystickButton(joystick, 2); 
-	Button j11 = new JoystickButton(joystick, 11);
-	Button j12 = new JoystickButton(joystick, 12);
+	Button j1;
+	Button j2;
+	Button j11;
+	Button j12;
 	
-	Button button7 = new JoystickButton(joystick, 7);
-	Button button8 = new JoystickButton(joystick, 8);
-	Button button9 = new JoystickButton(joystick, 9);	
-	Button button10 = new JoystickButton(joystick, 10);
-	
-	Button buttonY = new JoystickButton(xboxCtr, 4 );
-	Button buttonX = new JoystickButton(xboxCtr, 3);
-	Button buttonA = new JoystickButton(xboxCtr, 1);
-	Button buttonB = new JoystickButton(xboxCtr, 2);
+	Button button7;
+	Button button8;
+	Button button9;
+	Button button10;
+	Button buttonY;
+	Button buttonX;
+	Button buttonA;
+	Button buttonB;
 
 	public OI() 
 	{
+		xboxCtr = new Joystick(1);
+		joystick = new Joystick(0);
+		
+		j1 = new JoystickButton(joystick, 1); 
+		j2 = new JoystickButton(joystick, 2); 
+		j11 = new JoystickButton(joystick, 11);
+		j12 = new JoystickButton(joystick, 12);
+		
+		button7 = new JoystickButton(joystick, 7);
+		button8 = new JoystickButton(joystick, 8);
+		button9 = new JoystickButton(joystick, 9);	
+		button10 = new JoystickButton(joystick, 10);
+		
+		buttonY = new JoystickButton(xboxCtr, 4 );
+		buttonX = new JoystickButton(xboxCtr, 3);
+		buttonA = new JoystickButton(xboxCtr, 1);
+		buttonB = new JoystickButton(xboxCtr, 2);
+
 		//j1.whileHeld(new HighGoalCG());
 		j11.whenActive(new GearCG());
 		j12.whenActive(new HighGoalCG());

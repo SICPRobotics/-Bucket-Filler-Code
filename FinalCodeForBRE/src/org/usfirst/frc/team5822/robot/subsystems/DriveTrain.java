@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5822.robot.subsystems;
 
+import org.usfirst.frc.team5822.robot.SICPRobotDrive;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -12,7 +14,7 @@ public class DriveTrain extends PIDSubsystem
 
 	
 	/*static SICPRobotDrive drive;*/
-	public static RobotDrive drive;
+	public static SICPRobotDrive drive;
 	ADXRS450_Gyro gyro;
 	static double setpoint; 
 	
@@ -22,7 +24,7 @@ public class DriveTrain extends PIDSubsystem
 		super("DriveTrain", .2, .000, 0);// The constructor passes a name for the subsystem and the P, I and D constants that are sueed when computing the motor output
 		setAbsoluteTolerance(0.001);
 		getPIDController().setContinuous(false);
-		drive = new RobotDrive(0,1,2,3);
+		drive = new SICPRobotDrive(0,1,2,3);
 		gyro = new ADXRS450_Gyro();
 		gyro.reset();
 		setpoint = 0; 
