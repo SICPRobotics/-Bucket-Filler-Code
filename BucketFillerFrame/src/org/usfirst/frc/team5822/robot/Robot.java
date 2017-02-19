@@ -1,8 +1,8 @@
 
 package org.usfirst.frc.team5822.robot;
 
-import org.usfirst.frc.team5822.robot.commands.AutoLinedUpCenterBlue;
-import org.usfirst.frc.team5822.robot.commands.AutoLinedUpCenterRed;
+import org.usfirst.frc.team5822.robot.commands.AutoBlueCenterGearShoot;
+import org.usfirst.frc.team5822.robot.commands.AutoRedCenterGearShoot;
 import org.usfirst.frc.team5822.robot.subsystems.Climber;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Intake;
@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot
 	public void autonomousInit() 
 	{
 	
-		autonomousCommand = new AutoLinedUpCenterBlue();
+		autonomousCommand = new AutoBlueCenterGearShoot();
 		autonomousCommand.start();
 	}
 

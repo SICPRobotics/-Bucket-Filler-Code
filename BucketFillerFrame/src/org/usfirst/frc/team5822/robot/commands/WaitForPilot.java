@@ -6,9 +6,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WaitForPilot extends Command {
 
 	Timer timer = new Timer();
+	
+	int desiredTime;
+	
+	public WaitForPilot(int time)
+	{
+		desiredTime = time;
+	}
+	
 	protected void initialize() 
 	{
-
 		timer.start();
 	}
 	protected void execute()
@@ -22,7 +29,7 @@ public class WaitForPilot extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		if (timer.get() < 3)
+		if (timer.get() < desiredTime)
 			return false;
 		return true;
 	}
