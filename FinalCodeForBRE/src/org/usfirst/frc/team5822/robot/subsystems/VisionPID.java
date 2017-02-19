@@ -33,7 +33,7 @@ public class VisionPID extends PIDSubsystem {
 	double center, tolerance, distance; 
 	
 	public VisionPID() {
-		super(20, 0, 0);
+		super(.2, 0, 0);
 		piListen = new ITableListener_WB();
 		setAbsoluteTolerance(0.005);
 		
@@ -106,14 +106,18 @@ public class VisionPID extends PIDSubsystem {
 	@Override
 	protected double returnPIDInput()
 	{
-		/*if (gearVision)
-			return piTable.getNumber("Center Gear", 0); 
+		System.out.println("USING PID INPUT");
+		if (gearVision)
+		{
+			System.out.println("INPUT TO CONTROLLER: " + piTable.getNumber("Center Gear", 0));
+			return piTable.getNumber("Center Gear", 0);
+		}
 		else if (hGVision)
 			return piTable.getNumber("Center HG",0); 
 		else 
-			return 0;*/ 
-		System.out.println("USING PID INPUT");
-		return 30; 
+			return 0; 
+		
+		
 	}
 
 		
@@ -125,7 +129,6 @@ public class VisionPID extends PIDSubsystem {
 	protected void usePIDOutput(double output) 
 	{
 		System.out.println("OUTPUT: " + output);
-		DriveTrain.setOuts(.2, .2);
 		
 		/*if (hGVision)
 		{
@@ -142,12 +145,15 @@ public class VisionPID extends PIDSubsystem {
 		
 		if (gearVision)
 		{
-			/*DriveTrain.drive.drive(output, 0);
-			System.out.println("Should be driving");*/
+			//DriveTrain.drive.drive(output, 0);
 			
-			center =center = Math.abs(piTable.getNumber("Center G",10));
-			distance = piTable.getNumber("Distance G",10);
-			tolerance = 25+(2*piTable.getNumber("Width G",10)); 
+			System.out.println("Should be driving for Gear");
+			
+			
+			center = Math.abs(piTable.getNumber("Center Gear",0));
+			distance = piTable.getNumber("Distance Gear",0);
+			tolerance = 25+(2*piTable.getNumber("Width Gear",0)); 
+			System.out.println("Center: " + center + "; Distance: " + distance + "; Tolerance: " + tolerance);
 					
 			piTable.getBoolean("HG", false);  
 			
