@@ -2,7 +2,12 @@
 package org.usfirst.frc.team5822.robot;
 
 import org.opencv.core.Mat;
+import org.usfirst.frc.team5822.robot.subsystems.Climber;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5822.robot.subsystems.Intake;
+import org.usfirst.frc.team5822.robot.subsystems.Sensors;
+//import org.usfirst.frc.team5822.robot.subsystems.Sensors;
+import org.usfirst.frc.team5822.robot.subsystems.Shooter;
 import org.usfirst.frc.team5822.robot.subsystems.VisionPID;
 
 import edu.wpi.cscore.CvSink;
@@ -30,11 +35,20 @@ public class Robot extends IterativeRobot {
 
 
 	public static OI oi;
+	
+	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final Shooter shooter = new Shooter();
+	//public static final Sensors sensors = new Sensors();
+	public static final Intake intake = new Intake();
+	public static final Climber climber = new Climber();
+	public static final Sensors sensors = new Sensors();
+	//public static OI oi;
+	
 	public static NetworkTable piTable;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser;
 	public static VisionPID vision = null;
-	public static DriveTrain driveTrain = null;
+	//public static DriveTrain driveTrain = null;
 //	ITableListener_WB piListen = new ITableListener_WB();
 	UsbCamera cam0; 
 	UsbCamera cam1; 
@@ -69,7 +83,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		Robot.vision = new VisionPID();
-		Robot.driveTrain = new DriveTrain();
+		//Robot.driveTrain = new DriveTrain();
 		oi = new OI();
 		SmartDashboard.putData("Auto mode", chooser);
 
@@ -108,31 +122,43 @@ public class Robot extends IterativeRobot {
 		updateSmartDashBoard.start();
 		
 		Thread t = new Thread(() -> {
-			cam0 = new UsbCamera ("USB Camera 0", 0);
-			cam0.setResolution(320,240);
-			cam0.setFPS(20);
-			
-			cam1 = new UsbCamera ("USB Camera 1", 1);
-			cam1.setResolution(320,240);
-			cam1.setFPS(20);
-			
-			cvSink = CameraServer.getInstance().getVideo(cam0);
-			cvSink.setEnabled(true);
-			cvSource = CameraServer.getInstance().putVideo("Current View", 320, 240);
-			image = new Mat();	 
-			
-			cvSink1 = CameraServer.getInstance().getVideo(cam1);
-			cvSink1.setEnabled(true);
-			cvSource1 = CameraServer.getInstance().putVideo("Current View 1", 320, 240);
-			image1 = new Mat();	
+			try {
+				cam0 = new UsbCamera ("USB Camera 0", 0);
+				cam0.setResolution(320,240);
+				cam0.setFPS(20);
+				
+				cam1 = new UsbCamera ("USB Camera 1", 1);
+				cam1.setResolution(320,240);
+				cam1.setFPS(20);
+				
+				cvSink = CameraServer.getInstance().getVideo(cam0);
+				cvSink.setEnabled(true);
+				cvSource = CameraServer.getInstance().putVideo("Current View", 320, 240);
+				image = new Mat();	 
+				
+				cvSink1 = CameraServer.getInstance().getVideo(cam1);
+				cvSink1.setEnabled(true);
+				cvSource1 = CameraServer.getInstance().putVideo("Current View 1", 320, 240);
+				image1 = new Mat();	
+			}
+			catch (Exception e)
+			{
+				System.out.println(e); 
+			}
 			
 			while(!Thread.interrupted()) 
 			{
-				cvSink.grabFrame(image);
-				cvSource.putFrame(image);
-			
-				cvSink1.grabFrame(image1);
-				cvSource1.putFrame(image1);
+				try{
+					cvSink.grabFrame(image);
+					cvSource.putFrame(image);
+				
+					cvSink1.grabFrame(image1);
+					cvSource1.putFrame(image1);
+				}
+				catch (Exception e){
+					System.out.println(e);
+				}
+				
 			}
 		}
 		);
@@ -205,8 +231,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		leds3.setRaw(255);
-		
+		//leds3.setRaw(255);
+		JoystickFunctions.joystickDrive(DriveTrain.drive);
 		
 	}
 
