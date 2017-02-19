@@ -6,7 +6,6 @@ import org.usfirst.frc.team5822.robot.subsystems.Climber;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Intake;
 import org.usfirst.frc.team5822.robot.subsystems.Sensors;
-//import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 import org.usfirst.frc.team5822.robot.subsystems.Shooter;
 import org.usfirst.frc.team5822.robot.subsystems.VisionPID;
 
@@ -16,6 +15,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -63,6 +63,7 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	PWM leds3;
+	public static Preferences prefs; 
 	 
 	
 	SendableChooser<String> chooseAlliance; 
@@ -86,6 +87,7 @@ public class Robot extends IterativeRobot {
 		//Robot.driveTrain = new DriveTrain();
 		oi = new OI();
 		SmartDashboard.putData("Auto mode", chooser);
+		 
 
 		
 		chooseShoot.addObject("Cross Baseline Only", "crossOnly");
@@ -110,16 +112,47 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto Order", chooseOrder);
 		 
 		leds3 = new PWM(3); 
+		 
+		prefs = Preferences.getInstance(); 
+		prefs.putInt("Top H Gear", 0);
+		prefs.putInt("Top S Gear", 0);
+		prefs.putInt("Top V Gear", 0);
+		prefs.putInt("Bottom H Gear", 0);
+		prefs.putInt("Bottom S Gear", 0);
+		prefs.putInt("Bottom V Gear", 0);
+		
+		prefs.putInt("Top H HG", 0);
+		prefs.putInt("Top S HG", 0);
+		prefs.putInt("Top V HG", 0);
+		prefs.putInt("Bottom H HG", 0);
+		prefs.putInt("Bottom S HG", 0);
+		prefs.putInt("Bottom V HG", 0);
+		
 		
 		//TODO: Add to this thread all smart dashboard values you would like updated 
-		Thread updateSmartDashBoard = new Thread(() -> { 
+		/*Thread updateSmartDashBoard = new Thread(() -> { 
 			while(!Thread.interrupted())
 			{
 				piTable.putBoolean("HGVision Enabled", VisionPID.hGVision); 
-				piTable.putBoolean("Gear Vision Enabled", VisionPID.gearVision); 
+				piTable.putBoolean("Gear Vision Enabled", VisionPID.gearVision);
+				piTable.putNumber("Top H HG", prefs.getInt("Top H HG", 0)); 
+				piTable.putNumber("Top S HG", prefs.getInt("Top S HG", 0));
+				piTable.putNumber("Top V HG", prefs.getInt("Top V HG", 0));
+				piTable.putNumber("Bottom H HG", prefs.getInt("Bottom H HG", 0)); 
+				piTable.putNumber("Bottom S HG", prefs.getInt("Bottom S HG", 0));
+				piTable.putNumber("Bottom V HG", prefs.getInt("Bottom V HG", 0));
+				
+				piTable.putNumber("Top H Gear", prefs.getInt("Top H Gear", 0)); 
+				piTable.putNumber("Top S Gear", prefs.getInt("Top S Gear", 0));
+				piTable.putNumber("Top V Gear", prefs.getInt("Top V Gear", 0));
+				piTable.putNumber("Bottom H Gear", prefs.getInt("Bottom H Gear", 0)); 
+				piTable.putNumber("Bottom S Gear", prefs.getInt("Bottom S Gear", 0));
+				piTable.putNumber("Bottom V Gear", prefs.getInt("Bottom V Gear", 0));
+				System.out.println("Running Prefs Thread");
+				System.out.println("H for Gear: " + prefs.getInt("Bottom H Gear", 0));
 			}
 		});
-		updateSmartDashBoard.start();
+		updateSmartDashBoard.start();*/
 		
 		Thread t = new Thread(() -> {
 			try {
@@ -154,10 +187,12 @@ public class Robot extends IterativeRobot {
 				
 					cvSink1.grabFrame(image1);
 					cvSource1.putFrame(image1);
+					
 				}
 				catch (Exception e){
 					System.out.println(e);
 				}
+				
 				
 			}
 		}
@@ -194,6 +229,24 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
+		
+		piTable.putBoolean("HGVision Enabled", VisionPID.hGVision); 
+		piTable.putBoolean("Gear Vision Enabled", VisionPID.gearVision);
+		piTable.putNumber("Top H HG", prefs.getInt("Top H HG", 0)); 
+		piTable.putNumber("Top S HG", prefs.getInt("Top S HG", 0));
+		piTable.putNumber("Top V HG", prefs.getInt("Top V HG", 0));
+		piTable.putNumber("Bottom H HG", prefs.getInt("Bottom H HG", 0)); 
+		piTable.putNumber("Bottom S HG", prefs.getInt("Bottom S HG", 0));
+		piTable.putNumber("Bottom V HG", prefs.getInt("Bottom V HG", 0));
+		
+		piTable.putNumber("Top H Gear", prefs.getInt("Top H Gear", 0)); 
+		piTable.putNumber("Top S Gear", prefs.getInt("Top S Gear", 0));
+		piTable.putNumber("Top V Gear", prefs.getInt("Top V Gear", 0));
+		piTable.putNumber("Bottom H Gear", prefs.getInt("Bottom H Gear", 0)); 
+		piTable.putNumber("Bottom S Gear", prefs.getInt("Bottom S Gear", 0));
+		piTable.putNumber("Bottom V Gear", prefs.getInt("Bottom V Gear", 0));
+		System.out.println("Running Prefs Thread");
+		System.out.println("H for Gear: " + prefs.getInt("Bottom H Gear", 0));
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -223,6 +276,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
 	}
 
 	/**
@@ -234,6 +288,7 @@ public class Robot extends IterativeRobot {
 		//leds3.setRaw(255);
 		JoystickFunctions.joystickDrive(DriveTrain.drive);
 		
+		
 	}
 
 	/**
@@ -242,6 +297,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+		
 	}
 	
 //	public static NetworkTable returnTable()

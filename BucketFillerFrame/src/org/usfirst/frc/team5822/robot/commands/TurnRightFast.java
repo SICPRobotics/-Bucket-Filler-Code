@@ -43,7 +43,7 @@ public class TurnRightFast extends Command {
 	protected boolean isFinished() 
 	{
 
-		if (turnAngle > Sensors.gyroAngle())
+		if (turnAngle < Sensors.gyroAngle())
 		{
 			System.out.println("not finished");
 			System.out.println(Sensors.gyroAngle());

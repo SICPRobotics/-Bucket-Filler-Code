@@ -8,6 +8,7 @@ import org.usfirst.frc.team5822.robot.ITableListener_WB;
 import org.usfirst.frc.team5822.robot.Robot;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
@@ -50,6 +51,46 @@ public class VisionPID extends PIDSubsystem {
 		center = 0; 
 		tolerance = 0; 
 		distance = 0; 
+		
+		Preferences prefs; 
+		prefs = Preferences.getInstance(); 
+		prefs.putInt("Top H Gear", 0);
+		prefs.putInt("Top S Gear", 0);
+		prefs.putInt("Top V Gear", 0);
+		prefs.putInt("Bottom H Gear", 0);
+		prefs.putInt("Bottom S Gear", 0);
+		prefs.putInt("Bottom V Gear", 0);
+		
+		prefs.putInt("Top H HG", 0);
+		prefs.putInt("Top S HG", 0);
+		prefs.putInt("Top V HG", 0);
+		prefs.putInt("Bottom H HG", 0);
+		prefs.putInt("Bottom S HG", 0);
+		prefs.putInt("Bottom V HG", 0);
+		
+		/*Thread updateSmartDashBoard = new Thread(() -> { 
+		while(!Thread.interrupted())
+		{
+			piTable.putBoolean("HGVision Enabled", hGVision); 
+			piTable.putBoolean("Gear Vision Enabled", gearVision);
+			piTable.putNumber("Top H HG", prefs.getInt("Top H HG", 0)); 
+			piTable.putNumber("Top S HG", prefs.getInt("Top S HG", 0));
+			piTable.putNumber("Top V HG", prefs.getInt("Top V HG", 0));
+			piTable.putNumber("Bottom H HG", prefs.getInt("Bottom H HG", 0)); 
+			piTable.putNumber("Bottom S HG", prefs.getInt("Bottom S HG", 0));
+			piTable.putNumber("Bottom V HG", prefs.getInt("Bottom V HG", 0));
+			
+			piTable.putNumber("Top H Gear", prefs.getInt("Top H Gear", 0)); 
+			piTable.putNumber("Top S Gear", prefs.getInt("Top S Gear", 0));
+			piTable.putNumber("Top V Gear", prefs.getInt("Top V Gear", 0));
+			piTable.putNumber("Bottom H Gear", prefs.getInt("Bottom H Gear", 0)); 
+			piTable.putNumber("Bottom S Gear", prefs.getInt("Bottom S Gear", 0));
+			piTable.putNumber("Bottom V Gear", prefs.getInt("Bottom V Gear", 0));
+			System.out.println("Running Prefs Thread");
+			System.out.println("H for Gear: " + prefs.getInt("Bottom H Gear", 0));
+		}
+	});
+	updateSmartDashBoard.start();*/
 	}
 
 	@Override
@@ -75,11 +116,7 @@ public class VisionPID extends PIDSubsystem {
 		return 30; 
 	}
 
-	public void writeTable()
-	{
 		
-	}
-	
 	/**
 	 * Use the motor as the PID output. This method is automatically called by
 	 * the subsystem.
@@ -146,8 +183,24 @@ public class VisionPID extends PIDSubsystem {
 		gearVision = !gearVision;
 		noVision = !noVision; 
 		hGVision = false; 
+		System.out.println("TOGGLED GEAR VISION!");
 		piTable.putBoolean("HGVision Enabled", hGVision); 
-		piTable.putBoolean("Gear Vision Enabled", gearVision); 
+		piTable.putBoolean("Gear Vision Enabled", gearVision);
+		piTable.putNumber("Top H HG", Robot.prefs.getInt("Top H HG", 0)); 
+		piTable.putNumber("Top S HG", Robot.prefs.getInt("Top S HG", 0));
+		piTable.putNumber("Top V HG", Robot.prefs.getInt("Top V HG", 0));
+		piTable.putNumber("Bottom H HG", Robot.prefs.getInt("Bottom H HG", 0)); 
+		piTable.putNumber("Bottom S HG", Robot.prefs.getInt("Bottom S HG", 0));
+		piTable.putNumber("Bottom V HG", Robot.prefs.getInt("Bottom V HG", 0));
+		
+		piTable.putNumber("Top H Gear", Robot.prefs.getInt("Top H Gear", 0)); 
+		piTable.putNumber("Top S Gear", Robot.prefs.getInt("Top S Gear", 0));
+		piTable.putNumber("Top V Gear", Robot.prefs.getInt("Top V Gear", 0));
+		piTable.putNumber("Bottom H Gear", Robot.prefs.getInt("Bottom H Gear", 0)); 
+		piTable.putNumber("Bottom S Gear", Robot.prefs.getInt("Bottom S Gear", 0));
+		piTable.putNumber("Bottom V Gear", Robot.prefs.getInt("Bottom V Gear", 0));
+		System.out.println("Running Prefs Thread");
+		System.out.println("H for Gear: " + Robot.prefs.getInt("Bottom H Gear", 0));
 		return gearVision; 
 	}
 	
@@ -156,8 +209,25 @@ public class VisionPID extends PIDSubsystem {
 		hGVision = !hGVision; 
 		noVision = !noVision; 
 		gearVision = false; 
+		
+		System.out.println("TOGGLED GEAR VISION!");
 		piTable.putBoolean("HGVision Enabled", hGVision); 
-		piTable.putBoolean("Gear Vision Enabled", gearVision); 
+		piTable.putBoolean("Gear Vision Enabled", gearVision);
+		piTable.putNumber("Top H HG", Robot.prefs.getInt("Top H HG", 0)); 
+		piTable.putNumber("Top S HG", Robot.prefs.getInt("Top S HG", 0));
+		piTable.putNumber("Top V HG", Robot.prefs.getInt("Top V HG", 0));
+		piTable.putNumber("Bottom H HG", Robot.prefs.getInt("Bottom H HG", 0)); 
+		piTable.putNumber("Bottom S HG", Robot.prefs.getInt("Bottom S HG", 0));
+		piTable.putNumber("Bottom V HG", Robot.prefs.getInt("Bottom V HG", 0));
+		
+		piTable.putNumber("Top H Gear", Robot.prefs.getInt("Top H Gear", 0)); 
+		piTable.putNumber("Top S Gear", Robot.prefs.getInt("Top S Gear", 0));
+		piTable.putNumber("Top V Gear", Robot.prefs.getInt("Top V Gear", 0));
+		piTable.putNumber("Bottom H Gear", Robot.prefs.getInt("Bottom H Gear", 0)); 
+		piTable.putNumber("Bottom S Gear", Robot.prefs.getInt("Bottom S Gear", 0));
+		piTable.putNumber("Bottom V Gear", Robot.prefs.getInt("Bottom V Gear", 0));
+		System.out.println("Running Prefs Thread");
+		System.out.println("H for Gear: " + Robot.prefs.getInt("Bottom H Gear", 0));
 		return hGVision; 
 	}
 }

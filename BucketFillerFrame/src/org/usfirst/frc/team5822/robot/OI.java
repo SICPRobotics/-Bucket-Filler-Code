@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5822.robot;
 
 import org.usfirst.frc.team5822.robot.commands.Climb;
-import org.usfirst.frc.team5822.robot.commands.KeepOut;
+import org.usfirst.frc.team5822.robot.commands.OuttakeSlow;
 import org.usfirst.frc.team5822.robot.commands.Swallow;
 import org.usfirst.frc.team5822.robot.commands.Shoot;
 import org.usfirst.frc.team5822.robot.commands.StopClimb;
@@ -26,8 +26,10 @@ public class OI
 		buttonA.whenActive(new Swallow()); 		
 		buttonA.whenInactive(new StopIntake());
 		
-		buttonB.whenActive(new KeepOut());
+		buttonB.whenActive(new OuttakeSlow());
 		buttonB.whenInactive(new StopIntake());
+		
+		
 		
 		buttonX.whenActive(new Shoot());
 		buttonX.whenInactive(new StopShooting());

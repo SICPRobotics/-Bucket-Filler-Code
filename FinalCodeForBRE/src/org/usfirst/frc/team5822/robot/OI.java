@@ -32,8 +32,8 @@ public class OI {
 	
 	Button j11 = new JoystickButton(joystick, 11);
 	Button j12 = new JoystickButton(joystick, 12);
-	Button j9 = new JoystickButton(joystick, 9);
-	Button j10 = new JoystickButton(joystick, 10);
+	Button j7 = new JoystickButton(joystick, 7);
+	Button j8 = new JoystickButton(joystick, 8);
 	
 	
 	Button buttonA = new JoystickButton(xboxCtr, 1); 
@@ -63,11 +63,11 @@ public class OI {
 		button6.whenActive(new Climb());
 		button6.whenInactive(new StopClimb());
 		
-		j9.whenActive(new GearCG());
-		j9.whenInactive(new GearCG());
+		j7.whenActive(new GearCG());
+		j7.whenInactive(new GearCG());
 		
-		j10.whenActive(new HighGoalCG());
-		j10.whenInactive(new HighGoalCG());		
+		j8.whenActive(new HighGoalCG());
+		j8.whenInactive(new HighGoalCG());		
 		
 		j11.whenPressed(new InvertMotors());
 		j12.whenActive(new Turn180());
