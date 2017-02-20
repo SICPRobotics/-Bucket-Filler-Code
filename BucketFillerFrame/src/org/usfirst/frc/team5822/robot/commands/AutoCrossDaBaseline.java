@@ -9,6 +9,6 @@ public class AutoCrossDaBaseline extends CommandGroup {
 
     public AutoCrossDaBaseline() 
     {
-    	addSequential(new DriveForward(150));
+    	addSequential(new DriveBackward(150));
     }
 }

@@ -1,17 +1,18 @@
 
 package org.usfirst.frc.team5822.robot;
 
-import org.usfirst.frc.team5822.robot.commands.AutoBlueCenterGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoBlueBoilerGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoBlueRightGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoCenterGear;
-import org.usfirst.frc.team5822.robot.commands.AutoLeftGear;
-import org.usfirst.frc.team5822.robot.commands.AutoRedCenterGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoRedLeftGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoRedBoilerGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoRightGear;
-import org.usfirst.frc.team5822.robot.commands.AutoShootThenGearBlue;
-import org.usfirst.frc.team5822.robot.commands.AutoRedBoilerShootGear;
+//import org.usfirst.frc.team5822.robot.commands.AutoBlueCenterGearShoot;
+//import org.usfirst.frc.team5822.robot.commands.AutoBlueBoilerGearShoot;
+//import org.usfirst.frc.team5822.robot.commands.AutoBlueRightGearShoot;
+//import org.usfirst.frc.team5822.robot.commands.AutoCenterGear;
+//import org.usfirst.frc.team5822.robot.commands.AutoLeftGear;
+import org.usfirst.frc.team5822.robot.commands.*;
+//import org.usfirst.frc.team5822.robot.commands.AutoRedCenterGearShoot;
+//import org.usfirst.frc.team5822.robot.commands.AutoRedLeftGearShoot;
+//import org.usfirst.frc.team5822.robot.commands.AutoRedBoilerGearShoot;
+//import org.usfirst.frc.team5822.robot.commands.AutoRightGear;
+//import org.usfirst.frc.team5822.robot.commands.AutoShootThenGearBlue;
+//import org.usfirst.frc.team5822.robot.commands.AutoRedBoilerShootGear;
 import org.usfirst.frc.team5822.robot.subsystems.Climber;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Intake;
@@ -33,6 +34,10 @@ public class Robot extends IterativeRobot
 	
 	SendableChooser chooser;
 	Command autonomousCommand;
+	Command AutoCenterGear = new AutoCenterGear();
+	Command AutoBlueBoilerGear = new AutoBlueBoilerGear();
+
+	//System.out.println("Jack Kulevich is awesome.");
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Shooter shooter = new Shooter();
 	public static final Sensors sensors = new Sensors();
@@ -47,13 +52,26 @@ public class Robot extends IterativeRobot
 		System.out.println("running");
 		oi = new OI();
 		
-//		chooser = new SendableChooser();
+		chooser = new SendableChooser();
 //		//chooser.initTable(NetworkTable.getTable("Defense Chooser"));
-//		chooser.addDefault("Center Gear", "AutoCenterGear");
-//		chooser.addObject("Left Gear", "AutoLeftGear");
-//		chooser.addObject("Right Gear", "AutoRightGear");
-//		
-//		SmartDashboard.putData("Autonomous Defense Chooser", chooser);
+		chooser.addDefault("Center Gear", new AutoCenterGear());
+		chooser.addObject("Blue Boiler Gear", new AutoBlueBoilerGear());
+		chooser.addObject("Red Boiler Gear", new AutoRedBoilerGear());
+		chooser.addObject("Blue RZ Gear", new AutoBlueRzGear());
+		chooser.addObject("Red RZ Gear", new AutoRedRZGear());
+	
+		chooser.addObject("Blue Center Gear Shoot", new AutoBlueCenterGearShoot());
+		chooser.addObject("Red Center Gear Shoot", new AutoRedCenterGearShoot());
+		chooser.addObject("Blue Boiler Gear Shoot", new AutoBlueBoilerGearShoot());
+		chooser.addObject("Red Boiler Gear Shoot", new AutoRedBoilerGearShoot());
+
+		chooser.addObject("Shoot", new AutoShoot());
+		chooser.addObject("Blue Shoot Then Gear", new AutoBlueBoilerShootGear());
+		chooser.addObject("Red Shoot Then Gear", new AutoRedBoilerShootGear());
+				
+		chooser.addObject("Cross Baseline", new AutoCrossDaBaseline());
+		
+		SmartDashboard.putData("Autonomous Defense Chooser", chooser);
 	}
 
 		@Override
@@ -71,25 +89,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-	
-//		defense = chooser.getSelected().toString();
-//		if (defense.equals("AutoCenterGear"));
-//		{
-//			autonomousCommand = new AutoCenterGear();
-//			autonomousCommand.start();
-//		}
-//		if (defense.equals("AutoLeftGear"));
-//		{
-//			autonomousCommand = new AutoLeftGear();
-//			autonomousCommand.start();
-//		}
-//		if (defense.equals("AutoRightGear"));
-//		{
-//			autonomousCommand = new AutoRightGear();
-//			autonomousCommand.start();
-//		}
-		
-		autonomousCommand = new AutoCenterGear();
+		autonomousCommand = (Command) chooser.getSelected();
 		autonomousCommand.start();
 		
 	}

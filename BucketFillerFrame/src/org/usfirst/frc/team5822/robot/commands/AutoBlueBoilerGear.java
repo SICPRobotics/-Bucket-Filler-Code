@@ -9,9 +9,9 @@ public class AutoBlueBoilerGear extends CommandGroup {
 
     public AutoBlueBoilerGear()
     {
-    	addSequential(new DriveForward(62.95));
+    	addSequential(new DriveBackward(62.95));
     	addSequential(new TurnRightFast(59.42));
     	addSequential(new TurnLeftSlow(59.42));
-    	addSequential(new DriveForward(83.48));
+    	addSequential(new DriveBackward(83.48));
     }
 }

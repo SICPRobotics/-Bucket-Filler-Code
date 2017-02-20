@@ -9,10 +9,10 @@ public class AutoRedBoilerGear extends CommandGroup {
 
     public AutoRedBoilerGear()
     {
-     addSequential(new DriveForward(62.95));
+     addSequential(new DriveBackward(62.95));
      addSequential(new TurnLeftFast(-59.42));
      addSequential(new TurnRightSlow(-59.42));
-     addSequential(new DriveForward(83.48));
+     addSequential(new DriveBackward(83.48));
      //Need the stuff that lets the human player take up gear
     }
 }

@@ -9,9 +9,9 @@ public class AutoRedRZGear extends CommandGroup {
 
     public AutoRedRZGear() 
     {
-    	addSequential(new DriveForward(53.67));
+    	addSequential(new DriveBackward(53.67));
     	addSequential(new TurnRightFast(59.42));
     	addSequential(new TurnLeftSlow(59.42));
-    	addSequential(new DriveForward(102));
+    	addSequential(new DriveBackward(102));
     }
 }
