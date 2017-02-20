@@ -14,7 +14,7 @@ public class AutoRedLeftGearShoot extends CommandGroup
         addSequential(new WaitForPilot(3));
         addSequential(new DriveForward(1)); //very very very small distance
         addSequential(new WaitForPilot(5));
-        
+        addSequential(new DriveBackward(2));
 		addSequential(new TurnRightFast(1)); //angle from airship to boiler
 		addSequential(new TurnLeftSlow(1));
 		addSequential(new DriveForward(1));

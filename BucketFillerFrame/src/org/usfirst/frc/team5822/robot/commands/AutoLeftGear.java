@@ -9,7 +9,8 @@ public class AutoLeftGear extends CommandGroup {
 
     public AutoLeftGear() 
     {
-        addSequential(new DriveForward(1)); //input is encoder distance until start line up
+    	System.out.println("AutoLeftGear");
+    	addSequential(new DriveForward(1)); //input is encoder distance until start line up
         addSequential(new TurnRightFast(65)); //input is angle we want to turn, I think it's around 65 degrees
         addSequential(new TurnLeftSlow(65)); //have to figure out distance
         addSequential(new LineUpGear());

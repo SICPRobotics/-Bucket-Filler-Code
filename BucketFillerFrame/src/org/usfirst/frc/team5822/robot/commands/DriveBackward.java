@@ -13,21 +13,23 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
 public class DriveBackward extends Command {
 	
 int distance;
-	Timer timer = new Timer();
+	Timer tele;
+	
 	public DriveBackward(int encoderDistance) 
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
 		requires(Robot.sensors);
 		distance = encoderDistance;
-
+		tele = new Timer();
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() 
 	{
-		Sensors.resetEncoders();
+		tele.start();
+		//Sensors.resetEncoders();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -35,17 +37,18 @@ int distance;
 	protected void execute() 
 	{
 		DriveTrain.driveBackward();
+		System.out.println("Drive backward");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() 
 	{
-		if (Sensors.leftEncoderDistance() > distance || Sensors.rightEncoderDistance() > distance)
+		/*if (Sensors.leftEncoderDistance() < distance || Sensors.rightEncoderDistance() < distance)
 		{
-			return true;
-		}
-		return false;
+			return false;
+		}*/
+		return true;
 	}
 
 	// Called once after isFinished returns true

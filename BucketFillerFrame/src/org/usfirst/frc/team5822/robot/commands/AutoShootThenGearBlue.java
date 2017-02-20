@@ -9,9 +9,10 @@ public class AutoShootThenGearBlue extends CommandGroup {
 
     public AutoShootThenGearBlue() 
     {
-       	addSequential(new DriveBackward(1));
-    	addSequential(new TurnRightFast(1));
-    	addSequential(new TurnLeftSlow(1));
+       addSequential(new AutoShoot());
+    	addSequential(new DriveBackward(1));
+    	addSequential(new TurnRightFast(180));
+    	addSequential(new TurnLeftSlow(180));
     	addSequential(new DriveForward(1)); //Heads to the Peg
  
     	addSequential(new LineUpGear());

@@ -25,8 +25,7 @@ public class TurnLeftSlow extends Command {
 	@Override
 	protected void initialize() 
 	{
-		System.out.println("turning left slow ANGELA IS AWESOME");
-		
+		System.out.println("turning left slow ANGELA IS AWESOME");	
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -44,9 +43,9 @@ public class TurnLeftSlow extends Command {
 
 		if (turnAngle < Sensors.gyroAngle())
 		{
-			System.out.println("not finished");
-			System.out.println(Sensors.gyroAngle());
-			System.out.println(turnAngle);
+//			System.out.println("not finished");
+//			System.out.println(Sensors.gyroAngle());
+//			System.out.println(turnAngle);
 			return false;
 		}
 		else

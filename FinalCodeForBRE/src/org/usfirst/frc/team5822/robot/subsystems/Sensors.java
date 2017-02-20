@@ -19,8 +19,19 @@ public class Sensors extends Subsystem
 	{
 		gyro  = new ADXRS450_Gyro();
 //		ultra = new AnalogInput(1);
-		leftEncoder = new Encoder(0, 1);
-		rightEncoder = new Encoder(2, 3);
+		leftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		leftEncoder.setMaxPeriod(.1);
+		leftEncoder.setMinRate(10);
+		leftEncoder.setDistancePerPulse(5);
+		leftEncoder.setReverseDirection(true);
+		leftEncoder.setSamplesToAverage(7);
+		
+		rightEncoder = new Encoder(2, 3, false, Encoder.EncodingType.k2X);
+		rightEncoder.setMaxPeriod(.1);
+		rightEncoder.setMinRate(10);
+		rightEncoder.setDistancePerPulse(.0532);
+		rightEncoder.setReverseDirection(false);
+		rightEncoder.setSamplesToAverage(7);
 	}
 	
 //	public static double sonarDistance()
@@ -40,7 +51,8 @@ public class Sensors extends Subsystem
 	
 	public static double leftEncoderDistance()
 	{
-		return leftEncoder.getDistance();
+		return leftEncoder.getDistance(); 
+		
 	}
 	
 	public static double rightEncoderDistance()

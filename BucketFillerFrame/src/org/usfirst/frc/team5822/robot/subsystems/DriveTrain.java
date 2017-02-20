@@ -59,7 +59,7 @@ public class DriveTrain extends PIDSubsystem
 	
 	public static void turnLeftSlow()
 	{
-		wheelz.setLeftRightMotorOutputs(-.2, .2);
+		wheelz.setLeftRightMotorOutputs(-.27, .27);
 	}
 	
 	public static void turnLeftFast()
@@ -69,7 +69,7 @@ public class DriveTrain extends PIDSubsystem
 	
 	public static void turnRightSlow()
 	{
-		wheelz.setLeftRightMotorOutputs(0.15, -.15);
+		wheelz.setLeftRightMotorOutputs(0.27, -.27);
 	}
 	
 	public static void turnRightFast()

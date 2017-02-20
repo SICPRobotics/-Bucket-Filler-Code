@@ -24,7 +24,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * world do to minor differences.
  */
 public class VisionPID extends PIDSubsystem {
-	
+
+	private static final int TOPHHG = 122;
+	private static final int TOPSHG = 157;
+	private static final int TOPVHG = 196;
+	private static final int BOTHHG = 60;
+	private static final int BOTSHG = 0;
+	private static final int BOTVHG = 58;
+
+	private static final int TOPHG = 122;
+	private static final int TOPSG = 0;
+	private static final int TOPVG = 196;
+	private static final int BOTHG = 60;
+	private static final int BOTSG = 157;
+	private static final int BOTVG = 58;
+
 	static NetworkTable piTable;
 	ITableListener_WB piListen;
 
@@ -54,19 +68,19 @@ public class VisionPID extends PIDSubsystem {
 		
 		Preferences prefs; 
 		prefs = Preferences.getInstance(); 
-		prefs.putInt("Top H Gear", 0);
-		prefs.putInt("Top S Gear", 0);
-		prefs.putInt("Top V Gear", 0);
-		prefs.putInt("Bottom H Gear", 0);
-		prefs.putInt("Bottom S Gear", 0);
-		prefs.putInt("Bottom V Gear", 0);
+		prefs.putInt("Top H Gear", TOPHG);
+		prefs.putInt("Top S Gear", TOPSG);
+		prefs.putInt("Top V Gear", TOPVG);
+		prefs.putInt("Bottom H Gear", BOTHG);
+		prefs.putInt("Bottom S Gear", BOTSG);
+		prefs.putInt("Bottom V Gear", BOTVG);
 		
-		prefs.putInt("Top H HG", 0);
-		prefs.putInt("Top S HG", 0);
-		prefs.putInt("Top V HG", 0);
-		prefs.putInt("Bottom H HG", 0);
-		prefs.putInt("Bottom S HG", 0);
-		prefs.putInt("Bottom V HG", 0);
+		prefs.putInt("Top H HG", TOPHHG);
+		prefs.putInt("Top S HG", TOPSHG);
+		prefs.putInt("Top V HG", TOPVHG);
+		prefs.putInt("Bottom H HG", BOTHHG);
+		prefs.putInt("Bottom S HG", BOTSHG);
+		prefs.putInt("Bottom V HG", BOTVHG);
 		
 		/*Thread updateSmartDashBoard = new Thread(() -> { 
 		while(!Thread.interrupted())
@@ -130,6 +144,7 @@ public class VisionPID extends PIDSubsystem {
 	{
 		System.out.println("OUTPUT: " + output);
 		
+		
 		/*if (hGVision)
 		{
 		
@@ -146,6 +161,7 @@ public class VisionPID extends PIDSubsystem {
 		if (gearVision)
 		{
 			//DriveTrain.drive.drive(output, 0);
+			
 			
 			System.out.println("Should be driving for Gear");
 			
@@ -169,7 +185,7 @@ public class VisionPID extends PIDSubsystem {
 			
 			else if (distance<10)
 			{
-				DriveTrain.drive.setLeftRightMotorOutputs(.15, .15);
+				DriveTrain.drive.setLeftRightMotorOutputs(-.15, -.15);
 				System.out.println("BACKWARD!");
 			}
 		}
@@ -192,19 +208,33 @@ public class VisionPID extends PIDSubsystem {
 		System.out.println("TOGGLED GEAR VISION!");
 		piTable.putBoolean("HGVision Enabled", hGVision); 
 		piTable.putBoolean("Gear Vision Enabled", gearVision);
-		piTable.putNumber("Top H HG", Robot.prefs.getInt("Top H HG", 0)); 
-		piTable.putNumber("Top S HG", Robot.prefs.getInt("Top S HG", 0));
-		piTable.putNumber("Top V HG", Robot.prefs.getInt("Top V HG", 0));
-		piTable.putNumber("Bottom H HG", Robot.prefs.getInt("Bottom H HG", 0)); 
-		piTable.putNumber("Bottom S HG", Robot.prefs.getInt("Bottom S HG", 0));
-		piTable.putNumber("Bottom V HG", Robot.prefs.getInt("Bottom V HG", 0));
+		piTable.putNumber("Top H HG", Robot.prefs.getInt("Top H HG", TOPHHG)); 
+		piTable.putNumber("Top S HG", Robot.prefs.getInt("Top S HG", TOPSHG));
+		piTable.putNumber("Top V HG", Robot.prefs.getInt("Top V HG", TOPVHG));
+		piTable.putNumber("Bottom H HG", Robot.prefs.getInt("Bottom H HG", BOTHHG)); 
+		piTable.putNumber("Bottom S HG", Robot.prefs.getInt("Bottom S HG", BOTSHG));
+		piTable.putNumber("Bottom V HG", Robot.prefs.getInt("Bottom V HG", BOTVHG));
 		
-		piTable.putNumber("Top H Gear", Robot.prefs.getInt("Top H Gear", 0)); 
-		piTable.putNumber("Top S Gear", Robot.prefs.getInt("Top S Gear", 0));
-		piTable.putNumber("Top V Gear", Robot.prefs.getInt("Top V Gear", 0));
-		piTable.putNumber("Bottom H Gear", Robot.prefs.getInt("Bottom H Gear", 0)); 
-		piTable.putNumber("Bottom S Gear", Robot.prefs.getInt("Bottom S Gear", 0));
-		piTable.putNumber("Bottom V Gear", Robot.prefs.getInt("Bottom V Gear", 0));
+		piTable.putNumber("Top H Gear", Robot.prefs.getInt("Top H Gear", TOPHG)); 
+		piTable.putNumber("Top S Gear", Robot.prefs.getInt("Top S Gear", TOPSG));
+		piTable.putNumber("Top V Gear", Robot.prefs.getInt("Top V Gear", TOPVG));
+		piTable.putNumber("Bottom H Gear", Robot.prefs.getInt("Bottom H Gear", BOTHG)); 
+		piTable.putNumber("Bottom S Gear", Robot.prefs.getInt("Bottom S Gear", BOTSG));
+		piTable.putNumber("Bottom V Gear", Robot.prefs.getInt("Bottom V Gear", BOTVG));
+		piTable.setPersistent("Top H Gear");
+		piTable.setPersistent("Top S Gear");
+		piTable.setPersistent("Top V Gear");
+		piTable.setPersistent("Bottom H Gear");
+		piTable.setPersistent("tom S Gear");
+		piTable.setPersistent("Bottom V Gear");
+		
+		piTable.setPersistent("Top H HG");
+		piTable.setPersistent("Top S HG");
+		piTable.setPersistent("Top V HG");
+		piTable.setPersistent("Bottom H HG");
+		piTable.setPersistent("Bottom S HG");
+		piTable.setPersistent("Bottom V HG");
+
 		System.out.println("Running Prefs Thread");
 		System.out.println("H for Gear: " + Robot.prefs.getInt("Bottom H Gear", 0));
 		return gearVision; 

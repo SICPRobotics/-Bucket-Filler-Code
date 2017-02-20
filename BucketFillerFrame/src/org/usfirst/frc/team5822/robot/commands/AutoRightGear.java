@@ -9,6 +9,7 @@ public class AutoRightGear extends CommandGroup {
 
     public AutoRightGear() 
     {
+    	System.out.println("AutoRightGear");
         addSequential(new DriveForward(1)); //input is encoder distance until start line up
         addSequential(new TurnLeftFast(-65)); //input is angle we want to turn
         addSequential(new TurnRightSlow(-65)); //have to figure out distance

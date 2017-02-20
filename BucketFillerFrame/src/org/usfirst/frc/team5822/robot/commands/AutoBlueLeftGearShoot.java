@@ -12,12 +12,12 @@ public class AutoBlueLeftGearShoot extends CommandGroup
         addSequential(new LineUpGear());
         addSequential(new DriveForward(1)); //small distance, until gear is on peg
         addSequential(new WaitForPilot(3));
-        addSequential(new DriveForward(1)); //very very very small distance
+        addSequential(new DriveForward(.1)); //very very very small distance
         addSequential(new WaitForPilot(5));  
 		
 		addSequential(new DriveBackward(1));
-		addSequential(new TurnRightFast(1)); //almost 180, turn around to the boiler
-		addSequential(new TurnLeftSlow(1));
+		addSequential(new TurnRightFast(160)); //almost 180, turn around to the boiler
+		addSequential(new TurnLeftSlow(160));
 		addSequential(new DriveForward(1));
 		addSequential(new LineUpBoiler());
 		addSequential(new Shoot());

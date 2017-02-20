@@ -11,16 +11,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Sensors extends Subsystem 
 {
 	static ADXRS450_Gyro gyro;
-	static Encoder leftEncoder; 
-	static Encoder rightEncoder; 
+	//static Encoder leftEncoder; 
+	//static Encoder rightEncoder; 
 //	static AnalogInput ultra; //fill in based on which port it is plugged in
 	
 	public Sensors()
 	{
 		gyro  = new ADXRS450_Gyro();
 //		ultra = new AnalogInput(1);
-		leftEncoder = new Encoder(0, 1);
-		rightEncoder = new Encoder(2, 3);
+		//leftEncoder = new Encoder(0, 1);
+		//rightEncoder = new Encoder(2, 3);
 	}
 	
 //	public static double sonarDistance()
@@ -34,20 +34,22 @@ public class Sensors extends Subsystem
 	
 	public static void resetEncoders()
 	{
-		leftEncoder.reset();
-		rightEncoder.reset();
+		//leftEncoder.reset();
+		//rightEncoder.reset();
 	}
-	
+/*	
 	public static double leftEncoderDistance()
 	{
-		return leftEncoder.getDistance();
+		//System.out.println(leftEncoder.getDistance());
+		//return leftEncoder.getDistance();
 	}
 	
 	public static double rightEncoderDistance()
 	{
+		System.out.println(rightEncoder.getDistance());
 		return rightEncoder.getDistance();
 	}
-	
+	*/
 	public static void resetGyro()
 	{
 		gyro.reset();

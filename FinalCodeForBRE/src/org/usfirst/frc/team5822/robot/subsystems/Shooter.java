@@ -64,6 +64,7 @@ public class Shooter extends Subsystem {
     
     public void stopShooting()
     {
+    	shootMotor.disable();
     	shootMotor.set(0);
     	indexer.set(0);
     }

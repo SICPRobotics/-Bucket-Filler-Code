@@ -277,6 +277,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
+		Sensors.resetEncoders();
+		
 	}
 
 	/**
@@ -287,6 +289,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		//leds3.setRaw(255);
 		JoystickFunctions.joystickDrive(DriveTrain.drive);
+		//System.out.println("LEFT ENCODER: " + Sensors.leftEncoderDistance());
+		System.out.println("RIGHT ENCODER: " + Sensors.rightEncoderDistance());
 		
 		
 	}

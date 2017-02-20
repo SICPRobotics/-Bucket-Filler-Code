@@ -13,13 +13,16 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
  */
 public class DriveForward extends Command 
 {
-	int distance;
+	double distance;
+	Timer tele;
 	
-	public DriveForward(int encoderDistance) 
+	
+	public DriveForward(double encoderDistance) 
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
 		requires(Robot.sensors);
+		tele = new Timer();
 		distance = encoderDistance;
 	}
 
@@ -27,25 +30,29 @@ public class DriveForward extends Command
 	@Override
 	protected void initialize() 
 	{
-		Sensors.resetEncoders();
+//		Sensors.resetEncoders();
+		Sensors.resetGyro();
 		Robot.driveTrain.enable();
+		tele.start();
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() 
 	{
+		System.out.println("Drive forward");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() 
 	{
-		if (Sensors.leftEncoderDistance() > distance || Sensors.rightEncoderDistance() > distance)
+		/*if (Sensors.leftEncoderDistance() < distance || Sensors.rightEncoderDistance() < distance)
 		{
-			return true;
-		}
-		return false;
+			return false;
+		}*/
+		return true;
 	}
 
 	// Called once after isFinished returns true
