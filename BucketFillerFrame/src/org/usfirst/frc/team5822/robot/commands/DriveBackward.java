@@ -12,10 +12,10 @@ import org.usfirst.frc.team5822.robot.subsystems.Sensors;
  */
 public class DriveBackward extends Command {
 	
-int distance;
+double distance;
 	Timer tele;
 	
-	public DriveBackward(int encoderDistance) 
+	public DriveBackward(double encoderDistance) 
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
@@ -44,10 +44,10 @@ int distance;
 	@Override
 	protected boolean isFinished() 
 	{
-		/*if (Sensors.leftEncoderDistance() < distance || Sensors.rightEncoderDistance() < distance)
+		if (Sensors.rightEncoderDistance() < distance)
 		{
 			return false;
-		}*/
+		}
 		return true;
 	}
 

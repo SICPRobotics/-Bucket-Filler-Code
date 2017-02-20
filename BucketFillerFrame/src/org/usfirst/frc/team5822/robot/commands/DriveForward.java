@@ -48,10 +48,10 @@ public class DriveForward extends Command
 	@Override
 	protected boolean isFinished() 
 	{
-		/*if (Sensors.leftEncoderDistance() < distance || Sensors.rightEncoderDistance() < distance)
+		if ( Sensors.rightEncoderDistance() < distance)
 		{
 			return false;
-		}*/
+		}
 		return true;
 	}
 

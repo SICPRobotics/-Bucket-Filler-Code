@@ -2,16 +2,16 @@
 package org.usfirst.frc.team5822.robot;
 
 import org.usfirst.frc.team5822.robot.commands.AutoBlueCenterGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoBlueLeftGearShoot;
+import org.usfirst.frc.team5822.robot.commands.AutoBlueBoilerGearShoot;
 import org.usfirst.frc.team5822.robot.commands.AutoBlueRightGearShoot;
 import org.usfirst.frc.team5822.robot.commands.AutoCenterGear;
 import org.usfirst.frc.team5822.robot.commands.AutoLeftGear;
 import org.usfirst.frc.team5822.robot.commands.AutoRedCenterGearShoot;
 import org.usfirst.frc.team5822.robot.commands.AutoRedLeftGearShoot;
-import org.usfirst.frc.team5822.robot.commands.AutoRedRightGearShoot;
+import org.usfirst.frc.team5822.robot.commands.AutoRedBoilerGearShoot;
 import org.usfirst.frc.team5822.robot.commands.AutoRightGear;
 import org.usfirst.frc.team5822.robot.commands.AutoShootThenGearBlue;
-import org.usfirst.frc.team5822.robot.commands.AutoShootThenGearRed;
+import org.usfirst.frc.team5822.robot.commands.AutoRedBoilerShootGear;
 import org.usfirst.frc.team5822.robot.subsystems.Climber;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Intake;

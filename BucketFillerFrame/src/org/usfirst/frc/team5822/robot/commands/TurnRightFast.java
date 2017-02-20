@@ -14,7 +14,7 @@ public class TurnRightFast extends Command {
 	double turnAngle;
 
 	
-	public TurnRightFast(int desiredAngle) 
+	public TurnRightFast(double desiredAngle) 
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);

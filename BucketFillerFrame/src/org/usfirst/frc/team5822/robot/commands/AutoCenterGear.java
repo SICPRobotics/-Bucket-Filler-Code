@@ -10,11 +10,11 @@ public class AutoCenterGear extends CommandGroup {
     public AutoCenterGear() 
     {
     	System.out.println("AutoCenterGear");
-        addSequential(new DriveForward(10)); //input is encoder distance until start line up
+        addSequential(new DriveForward(82.55)); //input is encoder distance until start line up
         addSequential(new LineUpGear());
-        addSequential(new DriveForward(1)); //small distance, until gear is on peg
+        //addSequential(new DriveForward(1)); //small distance, until gear is on peg
         addSequential(new WaitForPilot(3));
-        addSequential(new DriveForward(1)); //very very very small distance
+        //addSequential(new DriveForward(1)); //very very very small distance
         addSequential(new WaitForPilot(10));        
     }
 }
