@@ -55,6 +55,7 @@ double distance;
 	@Override
 	protected void end() 
 	{
+		Robot.driveTrain.disable();
 	}
 
 	// Called when another command which requires one or more of the same
