@@ -29,8 +29,6 @@ public class OI
 		buttonB.whenActive(new OuttakeSlow());
 		buttonB.whenInactive(new StopIntake());
 		
-		
-		
 		buttonX.whenActive(new Shoot());
 		buttonX.whenInactive(new StopShooting());
 		

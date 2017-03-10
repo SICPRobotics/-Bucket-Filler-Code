@@ -34,8 +34,7 @@ public class Robot extends IterativeRobot
 	
 	SendableChooser chooser;
 	Command autonomousCommand;
-	Command AutoCenterGear = new AutoCenterGear();
-	Command AutoBlueBoilerGear = new AutoBlueBoilerGear();
+	Command Test = new AutoRedBoilerGear();
 
 	//System.out.println("Jack Kulevich is awesome.");
 	public static final DriveTrain driveTrain = new DriveTrain();
@@ -89,7 +88,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-		autonomousCommand = (Command) chooser.getSelected();
+		autonomousCommand = Test;
 		autonomousCommand.start();
 		
 	}
@@ -114,6 +113,7 @@ public class Robot extends IterativeRobot
 			JoystickFunctions.joystickDrive(DriveTrain.wheelz);
 			//System.out.println("LEFT ENCODER: "+ Sensors.leftEncoderDistance());
 			//System.out.println("RIGHT ENCODER: "+ Sensors.rightEncoderDistance());
+			//Shooter.shootMotor.set(1);
 			
 		}
 

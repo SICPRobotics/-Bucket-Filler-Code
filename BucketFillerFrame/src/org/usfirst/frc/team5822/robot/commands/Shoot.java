@@ -28,6 +28,7 @@ public class Shoot extends Command {
 	{
 		Shooter.shoot();
 		System.out.println("Shooting");
+		//System.out.println(Shooter.panel.getCurrent(2));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

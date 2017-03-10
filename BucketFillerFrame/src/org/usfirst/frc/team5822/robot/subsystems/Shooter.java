@@ -4,6 +4,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,15 +19,17 @@ public class Shooter extends Subsystem {
 	static Timer tele;
 	static boolean flag;
 	static VictorSP indexer;
+	//public static PowerDistributionPanel panel;
 	
     public Shooter()
     {
-		shootMotor = new CANTalon(4); 
+		shootMotor = new CANTalon(2); 
 		shootMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder); //Set the feedback device that is hooked up to the talon
 		shootMotor.setPID(1.3, .001, 35, 0.001, 0, 0, 0);
 		shootMotor.reverseSensor(true); 
 		tele = new Timer();
 		indexer = new VictorSP(7);
+		//panel = new PowerDistributionPanel();
 	
     }
 
@@ -36,7 +39,6 @@ public class Shooter extends Subsystem {
        	shootMotor.enable();
     	tele.reset();
 		tele.start();
-		
     }
     
     public static void index()
@@ -46,8 +48,6 @@ public class Shooter extends Subsystem {
     
     public static void shoot()
 	{
-		System.out.println("Time: " + tele.get());
-    
 		if (tele.get()<1)
     	{
 			System.out.println("CONTROL MODE: " + shootMotor.getControlMode());
@@ -67,10 +67,8 @@ public class Shooter extends Subsystem {
 			SmartDashboard.putNumber("Speed", shootMotor.getSpeed());
 		}
 		
-		if(tele.get()>2.7)
-		{
-			index(); 
-		}
+
+
 			
 		//write the code to run the shooter here
 	}

@@ -48,10 +48,10 @@ public class DriveBackward extends Command
 	@Override
 	protected boolean isFinished() 
 	{
-		if ( Sensors.rightEncoderDistance() < distance)
-		{
-			return false;
-		}
+//		if ( Sensors.rightEncoderDistance() < distance)
+//		{
+//			return false;
+//		}
 		return true;
 	}
 
