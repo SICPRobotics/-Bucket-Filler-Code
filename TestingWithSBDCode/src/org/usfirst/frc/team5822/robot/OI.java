@@ -12,6 +12,7 @@ import org.usfirst.frc.team5822.robot.commands.HighGoalCG;
 import org.usfirst.frc.team5822.robot.commands.InvertMotors;
 import org.usfirst.frc.team5822.robot.commands.OuttakeFast;
 import org.usfirst.frc.team5822.robot.commands.OuttakeSlow;
+import org.usfirst.frc.team5822.robot.commands.Set180;
 import org.usfirst.frc.team5822.robot.commands.Shoot;
 import org.usfirst.frc.team5822.robot.commands.StopClimb;
 import org.usfirst.frc.team5822.robot.commands.StopIntake;
@@ -20,6 +21,7 @@ import org.usfirst.frc.team5822.robot.commands.Swallow;
 import org.usfirst.frc.team5822.robot.commands.ToggleGear;
 import org.usfirst.frc.team5822.robot.commands.ToggleHG;
 import org.usfirst.frc.team5822.robot.commands.ChangeIsTurning;
+import org.usfirst.frc.team5822.robot.commands.ClearScheduler;
 import org.usfirst.frc.team5822.robot.commands.Turn180;
 
 /**
@@ -48,29 +50,30 @@ public class OI {
 
 	public OI()
 	{
-		buttonA.whenActive(new Swallow()); 		//
-		buttonA.whenInactive(new StopIntake());//
+		buttonA.whenActive(new Swallow()); 		
+		buttonA.whenInactive(new StopIntake());
 		
-		buttonB.whenActive(new OuttakeSlow());//
-		buttonB.whenInactive(new StopIntake());//
+		buttonB.whenActive(new OuttakeSlow());
+		buttonB.whenInactive(new StopIntake());
 		
-		buttonX.whenActive(new OuttakeFast());//
-		buttonX.whenInactive(new StopIntake());//
+		buttonX.whenActive(new OuttakeFast());
+		buttonX.whenInactive(new StopIntake());
 		
-//		button5.whenActive(new Shoot());//
-//		button5.whenInactive(new StopShooting());//
+		button5.whenActive(new Shoot());
+		button5.whenInactive(new StopShooting());
 		
-		button6.whenActive(new Climb());//
-		button6.whenInactive(new StopClimb());//
+		button6.whenActive(new Climb());
+		button6.whenInactive(new StopClimb());
 		
-		j7.whenActive(new GearCG());//
-		j7.whenInactive(new GearCG());//
+		j7.whenActive(new GearCG());
+		j7.whenInactive(new GearCG());
 		
-		j8.whenActive(new HighGoalCG());//
-		j8.whenInactive(new HighGoalCG());	//	
+		j8.whenPressed(new ClearScheduler());
 		
 		j11.whenPressed(new InvertMotors());
+		
 		j12.whenActive(new Turn180());
+		j12.whenInactive(new Set180(false));
 		j12.whenPressed(new ChangeIsTurning(true)); 
 		j12.whenReleased(new ChangeIsTurning(false));
 		

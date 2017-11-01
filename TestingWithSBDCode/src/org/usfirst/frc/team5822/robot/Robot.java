@@ -2,7 +2,7 @@
 package org.usfirst.frc.team5822.robot;
 
 import org.opencv.core.Mat;
-//import org.usfirst.frc.team5822.robot.commands.*;
+import org.usfirst.frc.team5822.robot.commands.*;
 import org.usfirst.frc.team5822.robot.subsystems.Climber;
 import org.usfirst.frc.team5822.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5822.robot.subsystems.Intake;
@@ -13,7 +13,7 @@ import org.usfirst.frc.team5822.robot.subsystems.VisionPID;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-//import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Preferences;
@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-//import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,17 +34,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
+	public static Preferences prefs; 
+	SendableChooser<Command> chooseAutonomous; 
+	
 	public static OI oi;
-	
-	public static final DriveTrain driveTrain = new DriveTrain();
-	public static final Shooter shooter = new Shooter();
-	public static final Sensors sensors = new Sensors();
-	public static final Intake intake = new Intake();
-	public static final Climber climber = new Climber();
-	
+	public static DriveTrain driveTrain;
+	public static Shooter shooter;
+	public static Sensors sensors;
+	public static Intake intake;
+	public static Climber climber;
 	public static NetworkTable piTable;
-	Command autonomousCommand;
 	public static VisionPID vision;
+	
+//	public static NetworkTable piTable;
+	Command autonomousCommand;
+	//public static DriveTrain driveTrain = null;
 //	ITableListener_WB piListen = new ITableListener_WB();
 	UsbCamera cam0; 
 	UsbCamera cam1; 
@@ -55,18 +58,18 @@ public class Robot extends IterativeRobot {
 	CvSource cvSource;
 	CvSink cvSink1; 
 	CvSource cvSource1;
-	
 	PWM leds3;
-	public static Preferences prefs; 
-	
-	SendableChooser<Command> chooseAutonomous; 
 
 	@Override
 	public void robotInit() 
 	{
 		chooseAutonomous = new SendableChooser<Command>(); 
-		
-	//	vision = new VisionPID();
+		driveTrain = new DriveTrain();
+		intake = new Intake();
+		climber = new Climber();
+		shooter = new Shooter();
+		sensors = new Sensors();
+		vision = new VisionPID();
 		oi = new OI();		
 		
 //		chooseAutonomous.addDefault("Cross Baseline Only", new AutoCrossBaseline());
@@ -89,7 +92,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Gear Vision: ", VisionPID.gearVision);
 		SmartDashboard.putNumber("Center", VisionPID.center);
 		
-		leds3 = new PWM(3); 
+		//leds3 = new PWM(3); 
 		 
 		prefs = Preferences.getInstance(); 
 		prefs.putInt("Top H Gear", 0);
@@ -265,7 +268,7 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 		
 //		Sensors.resetEncoders();
-//		Robot.driveTrain.changeIsTurning(false);
+		Robot.driveTrain.changeIsTurning(false);
 //		Robot.vision.changeGearDone(true);
 		
 		
@@ -278,8 +281,10 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 				
-//		if (!VisionPID.gearVision&&!VisionPID.hGVision&&!DriveTrain.isTurning)
-//			JoystickFunctions.joystickDrive(DriveTrain.drive);
+		SmartDashboard.putBoolean("Gear Vision", Robot.vision.gearVision); 
+		SmartDashboard.putBoolean("Data From Pi", Robot.vision.piTable.getBoolean("Gear Vision from Pi", false)); 
+		if (!VisionPID.gearVision&&!VisionPID.hGVision&&!DriveTrain.isTurning)
+			JoystickFunctions.joystickDrive(DriveTrain.drive);
 
 		//System.out.println("LEFT ENCODER: " + Sensors.leftEncoderDistance());
 	//	System.out.println("RIGHT ENCODER: " + Sensors.rightEncoderDistance());

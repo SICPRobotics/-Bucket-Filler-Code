@@ -49,10 +49,10 @@ public class SICPRobotDrive extends RobotDrive implements MotorSafety
       final int rearRightMotor) {
 
       super(new VictorSP (frontLeftMotor), new VictorSP (rearLeftMotor), new VictorSP (frontRightMotor), new VictorSP (rearRightMotor)); 
-      leftFront = new VictorSP (frontLeftMotor);
-      rightFront = new VictorSP (frontRightMotor);
-      leftRear = new VictorSP (rearLeftMotor);
-      rightRear = new VictorSP (rearRightMotor);
+//      leftFront = new VictorSP (frontLeftMotor);
+//      rightFront = new VictorSP (frontRightMotor);
+//      leftRear = new VictorSP (rearLeftMotor);
+//      rightRear = new VictorSP (rearRightMotor);
    //   setUpMotors(); 
    
   }

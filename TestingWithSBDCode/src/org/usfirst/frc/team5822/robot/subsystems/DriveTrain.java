@@ -64,32 +64,31 @@ public class DriveTrain extends PIDSubsystem
 	
 	public static void driveBackward()
 	{
-		drive.drive(0.15, 0.0);
+		drive.drive(0.25, 0.0);
 	}
 	
 	public static void turnLeftSlow()
 	{
 		//turn left real slow boi
-		drive.setLeftRightMotorOutputs(-.22, .22);
-	
+		drive.setLeftRightMotorOutputs(-.25, .25);
 	}
 	
 	public static void turnLeftFast()
 	{
 		//turn left real fast boi
-		drive.drive(0.3, -1);
+		drive.drive(0.5, -1);
 	}
 	
 	public static void turnRightSlow()
 	{
 		//turn right super duper slowly maaaaaan
-		drive.setLeftRightMotorOutputs(0.22, -.22);
+		drive.setLeftRightMotorOutputs(.25,-.25);
 	}
 	
 	public static void turnRightFast()
 	{
 		//turn right super duper fast boiiiii
-		drive.drive(0.3, 1);
+		drive.drive(.5, 1);
 	}
 	
 	public void changeIsTurning(boolean val)

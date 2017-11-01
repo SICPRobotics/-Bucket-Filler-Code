@@ -9,14 +9,14 @@ public class Climb extends Command {
 	
 	public Climb() 
 	{	
-		//requires(Robot.climber);
+		requires(Robot.climber);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() 
 	{
-		SmartDashboard.putBoolean("Climbing", true);
+		SmartDashboard.putBoolean("Climbing", true); 
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -24,7 +24,7 @@ public class Climb extends Command {
 	protected void execute() 
 	{
 		//Robot.climber.climb();
-		System.out.println("Climb");
+		System.out.println("CLIMBING");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -46,5 +46,6 @@ public class Climb extends Command {
 	@Override
 	protected void interrupted() 
 	{
+		
 	}
 }

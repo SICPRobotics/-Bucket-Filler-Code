@@ -26,6 +26,7 @@ public class StopClimb extends Command {
     protected void execute() {
     	Robot.climber.stopClimb();
     	System.out.println("Stop climb.");
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,5 +41,6 @@ public class StopClimb extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
     }
 }
