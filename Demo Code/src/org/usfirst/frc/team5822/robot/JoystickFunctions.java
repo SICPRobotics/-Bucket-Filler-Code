@@ -24,6 +24,7 @@ public class JoystickFunctions
 	{
 		double scale = discoStick.getRawAxis(3)*-1;
 		scale = ((scale+1)/4)+0.1; // changed from min of 0.6-1.1 to 0.1-0.6
+		//this is a change
 		//gets the x and y axis values from the joystick 
 		moveValue = discoStick.getRawAxis(1);
 		rotateValue = discoStick.getRawAxis(0); 
