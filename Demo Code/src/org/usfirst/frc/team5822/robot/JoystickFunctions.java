@@ -23,8 +23,7 @@ public class JoystickFunctions
 	public static void joystickDrive(SICPRobotDrive wheelz)
 	{
 		double scale = discoStick.getRawAxis(3)*-1;
-		scale = (scale/5)+0.5; 
-		//needs to be fixed
+		scale = ((scale+1)/4)+0.1; // changed from min of 0.6-1.1 to 0.1-0.6
 		//gets the x and y axis values from the joystick 
 		moveValue = discoStick.getRawAxis(1);
 		rotateValue = discoStick.getRawAxis(0); 
