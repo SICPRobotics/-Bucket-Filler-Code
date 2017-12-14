@@ -42,8 +42,9 @@ public class Robot extends IterativeRobot
 		driveTrain = new DriveTrain();
 		climber = new Climber();
 		sensors = new Sensors();
-		oi = new OI();		
 		gearIntake = new GearIntake();
+		oi = new OI();		
+		
 		
 		//adds all auto options to the sendable chooser
 		chooseAutonomous.addDefault("Cross Baseline Only", new AutoCrossBaseline());
